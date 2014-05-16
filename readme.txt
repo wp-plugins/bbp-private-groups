@@ -15,8 +15,8 @@ This Plugin creates unlimited private forum groups.
 
 Forums are then allocated to one or more groups, and users allocated to one group.
 
-What this achieves
-unlimited private groups
+How it works
+
 Each user is set to a group, and each forum can have any or all the groups associated with it
 Any number of public forums combined with any number of group forums.  The group forums can be individually set to public or private.
 Forum title and description (but not topics or replies) can be set to be visible to non-group users, allowing people to see that a forum exists but not access it
@@ -93,7 +93,7 @@ Here you set  'friendly' names for the groups, to help you remember.  These name
 
 For each restricted forum
 <ol>
-	<li>Go in to Dashboard&gt;forums and select the forum you wish to restrict.</li>
+	<li>Go in to Dashboard>forums and select the forum you wish to restrict.</li>
 	<li>Under the text you’ll see a box called ‘Forum Groups’ – select the group or groups you wish to allow to access this forum</li>
 	<li>If you wish to have a custom error message, you can set one here.</li>
 </ol>
@@ -112,15 +112,6 @@ Go in to Dashboard&gt;appearance&gt;widgets
 
 
 
-
-
-
-
-
-
-
-
-
 To set forums
 
 For each restricted forum
@@ -135,7 +126,7 @@ The bbPress topics and replies widgets will still at this stage show all topic a
 However you will probably not want people to see these subjects, so there are two widgets that the plugins have added that filter this to only show appropriate content.
 
 Go in to Dashboard>appearance>widgets
-1.You will see three new wiggets starting with '(Private Groups)' and covering topics, replies and forum list.
+1.You will see three new widgets starting with '(Private Groups)' and covering topics, replies and forum list.
 2.If you are using the standard bbPress topic, reply or forum list widgets, you should remove these from your sidebar and replace them with the ‘tehnik’ ones
 
 
@@ -149,9 +140,14 @@ Go in to Dashboard>appearance>widgets
 
 == Changelog ==
 1.0 Version 1
+
 1.1 Minor changes
+
 1.2 Author and replies issues fixed
+
 1.3 topics and replies pafing fixed
+
 1.4.1 compatibility with 'mark as read' plugin
-1.5 amended to ahev unlimited groups
+
+1.5 amended to have unlimited groups
 
