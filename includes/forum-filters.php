@@ -38,10 +38,7 @@ function private_groups_filter($args = '') {
 		//check this list against those the user is allowed to see, and create a list of valid ones for the wp_query
 		$allowed_posts = check_private_groups_topic_ids($post_ids) ;
 	
-		//$args['post__in'] = $allowed_posts;	
 		
-		//$allowed_forums = private_groups_get_permitted_post_ids(new WP_Query($meta_query));
-
 		// the above generates a list of allowed forums, which is now added to the wp query parameters post__in if set sets which posts are valid to return
 		$meta_query['post__in'] = $allowed_posts;
 		}
@@ -270,4 +267,46 @@ function custom_list_forums( $args = '' ) {
 	
 }
 }
-?>
+
+//restrict the forum display on topic-form to allowed forums
+add_filter ('bbp_before_get_dropdown_parse_args', 'pg_forum_dropdown') ;
+
+function pg_forum_dropdown( $args = '' ) {
+	//Get an array of forums which the current user has permissions to view 
+		global $wpdb;
+		$post_ids=$wpdb->get_col("select ID from $wpdb->posts where post_type = 'forum'") ;
+		//check this list against those the user is allowed to see, and create a list of valid ones for the wp_query
+		$allowed_posts = private_groups_get_dropdown_forums($post_ids) ;
+	
+		// the above generates a list of allowed forums, and we compare this against the original list to create and 'exclude' list
+			
+    $result=array_diff($post_ids, $allowed_posts) ;
+	$args['exclude'] = $result ;
+return $args;
+}
+
+
+function private_groups_get_dropdown_forums($forum_list) {
+	
+		$filtered_forums = array();
+		
+	
+				//Get Current User ID
+				$user_id = wp_get_current_user()->ID;
+				foreach ($forum_list as $forum) 
+					{
+												
+					//check if user can view this forum (and hence posts in this forum)
+					if(private_groups_can_user_view_post($user_id, $forum))
+						{
+						array_push($filtered_forums, $forum);
+							
+						}
+						
+					}				
+		return (array) $filtered_forums;
+	
+}
+
+
+

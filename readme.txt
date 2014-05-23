@@ -4,7 +4,7 @@ Tags: forum, bbpress, bbp, private, groups
 Requires at least: 3.0.1
 Donate link: http://www.rewweb.co.uk/donate
 Tested up to: 3.9
-Stable tag: 1.5
+Stable tag: 1.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -41,7 +41,6 @@ User c can access forum y and forum z
 
 Restrictions/warnings
 
-The shortcode [bbp-topic-form] will show the existence of all forums, although users can only post in forums that have access to
 The widgets (bbpress) forums list, (bbpress) recent replies, and (bbpress) recent topics SHOULD NOT BE USED, as they will show topics headings and author names for all forums.  Replacement widgets called (private groups) forums list, (private groups) recent replies, and (private groups) recent topics are available instead
 
 
@@ -149,9 +148,16 @@ Go in to Dashboard>appearance>widgets
 
 == Changelog ==
 1.0 Version 1
+
 1.1 Minor changes
+
 1.2 Author and replies issues fixed
-1.3 topics and replies pafing fixed
+
+1.3 topics and replies paging fixed
+
 1.4.1 compatibility with 'mark as read' plugin
-1.5 amended to ahev unlimited groups
+
+1.5 Amended to have unlimited groups
+
+1.6 Shortcode [bbp-topic-form] now only shows allowed forums
 
