@@ -3,12 +3,11 @@
  * Conditional tag to check if a user can view a specific post, by checking if they can see the forum that it belongs to.  
  * Non-logged in site visitors cannot view posts if groups were selected for the forum they belong to. 
 * 	A user cannot view a post if their group role has not been selected in the meta box on the edit forum screen in the dashboard.  
- *  If no groups were selected, all users and site visitors 
- * 	can view the content.
+ *  If no groups were selected, all users and site visitors can view the content.
+ 
+ *  Keymasters can always view, and moderators with no group set can view
  *
- * There are exceptions to this rule though.  The post author, and users that have the ability to edit the post can always 
- * view the post, even if their role was not granted permission to view it.
- *
+ * 
  *Much of this code is Justin Tadlocks' from the members plugin - thanks Justin for awesome work ! 
  */
  
@@ -46,13 +45,15 @@ function private_groups_can_user_view_post( $user_id, $forum_id = '' ) {
 			
 			
 
-			/*Check if user is moderator or keymaster
-			*This code is only here for the widgets, other bbp code already overrides $can_view
-			*to allow moderators and keymasters to see forum lists, topics and replies*/
-			
-			if ( bbp_is_user_keymaster() || user_can( $user_id, 'moderate' ) ) {
-				$can_view = true;
+			/*Check if user is keymaster*/
+			if ( bbp_is_user_keymaster()) 
+			$can_view = true; 
+		
+			if (user_can( $user_id, 'moderate' ) ) {
+			$check=get_user_meta( $user_id, 'private_group',true);
+			if ($check=='') $can_view= true ;
 			}
+			
 			
 		
 			/* Else, let's check the user's group against the selected group. */

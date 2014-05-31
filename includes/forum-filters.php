@@ -5,7 +5,7 @@ add_filter( 'bbp_before_forum_get_subforums_parse_args', 'bbp_list_private_group
 add_filter('bbp_list_forums', 'custom_list_forums' );
 /**
  * This function filters the list of forums based on the the users group
- * Much of this code is from the work of Aleksandar Adamovic in his Tehnik BBPress Permissions - thanks !
+ * Much of this code is based on the work of Aleksandar Adamovic in his Tehnik BBPress Permissions - thanks !
  */
 function private_groups_filter($args = '') {
     global $rpg_settingsf ;
@@ -34,7 +34,8 @@ function private_groups_filter($args = '') {
 		if (!$rpg_settingsf['set_forum_visibility']) {
 		//Get an array of forums which the current user has permissions to view posts in
 		global $wpdb;
-		$post_ids=$wpdb->get_col("select ID from $wpdb->posts where post_type = 'forum'") ;
+		$forum=bbp_get_forum_post_type() ;
+		$post_ids=$wpdb->get_col("select ID from $wpdb->posts where post_type = '$forum'") ;
 		//check this list against those the user is allowed to see, and create a list of valid ones for the wp_query
 		$allowed_posts = check_private_groups_topic_ids($post_ids) ;
 	
@@ -274,7 +275,16 @@ add_filter ('bbp_before_get_dropdown_parse_args', 'pg_forum_dropdown') ;
 function pg_forum_dropdown( $args = '' ) {
 	//Get an array of forums which the current user has permissions to view 
 		global $wpdb;
-		$post_ids=$wpdb->get_col("select ID from $wpdb->posts where post_type = 'forum'") ;
+		$forum=bbp_get_forum_post_type() ;
+		if ( bbp_is_user_keymaster()) return $args; 
+		
+		$user_id = wp_get_current_user()->ID;
+		if (user_can( $user_id, 'moderate' ) ) {
+		$check=get_user_meta( $user_id, 'private_group',true);
+		if ($check=='') return $args;
+		}
+		
+		$post_ids=$wpdb->get_col("select ID from $wpdb->posts where post_type = '$forum'") ;
 		//check this list against those the user is allowed to see, and create a list of valid ones for the wp_query
 		$allowed_posts = private_groups_get_dropdown_forums($post_ids) ;
 	

@@ -37,7 +37,8 @@ global $rpg_settingsf ;
 	<a href="?page=bbp-private-group-settings&tab=general_settings" class="nav-tab <?php echo $active_tab == 'general_settings' ? 'nav-tab-active' : ''; ?>">General Settings</a>
  	<a href="?page=bbp-private-group-settings&tab=group_name_settings" class="nav-tab <?php echo $active_tab == 'group_name_settings' ? 'nav-tab-active' : ''; ?>">Group Name Settings</a>
 	<a href="?page=bbp-private-group-settings&tab=help" class="nav-tab <?php echo $active_tab == 'help' ? 'nav-tab-active' : ''; ?>">Help</a></h2>
-
+	<a href="?page=bbp-private-group-settings&tab=management_information"  class="nav-tab <?php echo $active_tab == 'Management_information' ? 'nav-tab-active' : ''; ?>">Management Information</a></h2>
+	
 	<table class="form-table">
 			<tr>
 			
@@ -300,13 +301,91 @@ Private forums set visible to logged on users</span></h4>
 
  </th>
 					</tr>
-					
-						</form>
+					<a href="http://www.rewweb.co.uk/wp-content/uploads/2014/04/private-group-roles1.jpg"><img src="http://www.rewweb.co.uk/wp-content/uploads/2014/04/private-group-roles1.jpg"/> </a>
+					</form>
 		</div><!--end sf-wrap-->
 	</div><!--end wrap-->
 <?php
 }
 ?>
+
+<?php //************************* Management Info *************************// ?>
+			<?php if( $active_tab == 'management_information' ) { ?>
+			<form method="post" action="options.php">
+			
+			<?php settings_fields( 'rpg_group_settings' ); ?>
+			
+			<table class="form-table">
+			
+			<tr valign="top">
+			<th colspan="2"><p> This section is planned for future releases - at the moment it just shows you no. users and forums.</p></th>
+			</tr>
+			<?php 
+			$count=count ($rpg_groups) ;
+			for ($i = 0 ; $i < $count ; ++$i) {
+			$g=$i+1 ;
+			$name="group".$g ;
+			$item="rpg_groups[".$name."]" ;
+			?>
+			<!-------------------------  Group  --------------------------------------------->		
+					<tr valign="top">
+					<th><?php echo $name ?></th>
+					<td>
+					Group name : 
+					<?php echo esc_html( $rpg_groups[$name] ).'<br>' ; ?>
+					No. users in this group : 
+					<?php 
+					global $wpdb;
+					$users=$wpdb->get_col("select ID from $wpdb->users") ;
+					$countu=0 ;
+					foreach ($users as $user) {
+					
+					$check=  get_user_meta( $user, 'private_group',true);
+					if ($check==$name) $countu++ ;
+					}
+					echo $countu ;
+					
+				?>
+					<br>No. forums that have this group set : 
+					<?php global $wpdb;
+					$forums=$wpdb->get_col("select ID from $wpdb->posts where post_type='forum'") ;
+					//var_dump ($forums) ;
+					$countu=0 ;
+					foreach ($forums as $forum) {
+						$meta = (array)get_post_meta( $forum, '_private_group', false );
+						//var_dump ($meta) ;
+						//echo '<br>' ;
+						foreach ($meta as $meta2) {
+							if ($meta2==$name) {
+							$countu++ ;
+							//echo $meta2 ;
+							}
+						}
+								
+					}
+					echo $countu ;
+					?>
+					</td></tr>
+					<?php }
+					 			
+					?>
+									
+					
+					</table>
+					
+				</form>
+		</div><!--end sf-wrap-->
+	</div><!--end wrap-->
+	
+<?php
+}
+?>
+
+
+
+
+
+
 <?php
 }
 

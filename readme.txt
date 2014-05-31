@@ -161,3 +161,8 @@ Go in to Dashboard>appearance>widgets
 
 1.6 Shortcode [bbp-topic-form] now only shows allowed forums
 
+1.7 Moderators can now be set to moderate all forums or just their group ones (plus any open forums)
+Improved topic filtering to speed performance
+allow Super sticky topics to be seen by all forums
+
+

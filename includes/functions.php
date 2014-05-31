@@ -22,6 +22,8 @@ function private_groups_check_can_user_view_post() {
     $post_id = $wp_query->post->ID;
     $post_type = $wp_query->get('post_type');
 	
+	if (bbp_is_topic_super_sticky($post_id)) return true;
+	
 	
     $forum_id = private_groups_get_forum_id_from_post_id($post_id, $post_type);
 //then call the function that checks if the user can view this forum, and hence this post
@@ -269,7 +271,7 @@ $user_id2 = wp_get_current_user()->ID;
 		}
 		// Neither a reply nor a topic, so could be a revision
 		//if it isn't a topic or reply, not sure so better to just not display the author in this case
-		//could be revised to look up the post_parent of this post and then churn that round the code above if requiredreturn ;
+		//could be revised to look up the post_parent of this post and then churn that round the code above if required return ;
 		return ;
 
 }

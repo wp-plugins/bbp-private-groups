@@ -7,14 +7,23 @@ function pg_has_topics( $args = '' ) {
 	$default_post_parent   = bbp_is_single_forum() ? bbp_get_forum_id() : 'any';
 	
 	if ($default_post_parent == 'any') {
-	global $wpdb;
+		if ( bbp_is_user_keymaster()) return $args; 
+		$user_id = wp_get_current_user()->ID;
+		
+		if (user_can( $user_id, 'moderate' ) ) {
+		$check=get_user_meta( $user_id, 'private_group',true);
+		if ($check=='') return $args;
+		}
 	
-	$post_ids=$wpdb->get_col("select ID from $wpdb->posts where post_type = 'topic'") ;
-//check this list against those the user is allowed to see, and create a list of valid ones for the wp_query in bbp_has_topics
-$allowed_posts = check_private_groups_topic_ids($post_ids) ;
+	
+	global $wpdb;
+	$topic=bbp_get_topic_post_type() ;
+	$post_ids=$wpdb->get_col("select ID from $wpdb->posts where post_type = '$topic'") ;
+	//check this list against those the user is allowed to see, and create a list of valid ones for the wp_query in bbp_has_topics
+	$allowed_posts = check_private_groups_topic_ids($post_ids) ;
 	
     $args['post__in'] = $allowed_posts;	
-	}
+}
 return $args;
 }
 

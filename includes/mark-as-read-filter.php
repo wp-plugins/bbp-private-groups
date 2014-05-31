@@ -24,7 +24,6 @@ add_filter('bbp_get_user_unread', 'pg_get_user_unread' );
 		$read_ids = array_filter( $read_ids );
 			if ( !empty( $read_ids ) ) {
 			//so we have unreads, so need to create a list of unread that the user can see
-			//uses code from pg
 			//so first we create a list of topics the user can see
 			global $wpdb;
 			$post_ids=$wpdb->get_col("select ID from $wpdb->posts where post_type = 'topic'") ;
