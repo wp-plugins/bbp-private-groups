@@ -26,7 +26,8 @@ add_filter('bbp_get_user_unread', 'pg_get_user_unread' );
 			//so we have unreads, so need to create a list of unread that the user can see
 			//so first we create a list of topics the user can see
 			global $wpdb;
-			$post_ids=$wpdb->get_col("select ID from $wpdb->posts where post_type = 'topic'") ;
+			$topic= bbp_get_topic_post_type() ;
+			$post_ids=$wpdb->get_col("select ID from $wpdb->posts where post_type = '$topic'") ;
 			//check this list against those the user is allowed to see, and create a list of valid ones for the wp_query in bbp_has_topics
 			$allowed_posts = check_private_groups_topic_ids($post_ids) ;
 			//now we need to take out of that list all read topics for that user

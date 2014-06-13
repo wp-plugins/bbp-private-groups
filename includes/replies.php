@@ -51,7 +51,8 @@ function check_private_groups_reply_ids($post_ids) {
     //Loop through all the posts
 	foreach ( $post_ids as $post_id ) {
 		//Get the Forum ID based on Post Type Topic
-        $forum_id = private_groups_get_forum_id_from_post_id($post_id, 'reply');
+		$reply=bbp_get_reply_post_type() ;
+        $forum_id = private_groups_get_forum_id_from_post_id($post_id, $reply);
 		//Check if User has permissions to view this Post ID
 		//by calling the function that checks if the user can view this forum, and hence this post
         if (private_groups_can_user_view_post_id($forum_id)) {

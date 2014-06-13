@@ -35,9 +35,9 @@ function private_groups_filter($args = '') {
 		//Get an array of forums which the current user has permissions to view posts in
 		global $wpdb;
 		$forum=bbp_get_forum_post_type() ;
-		$post_ids=$wpdb->get_col("select ID from $wpdb->posts where post_type = '$forum'") ;
+		$forum_ids=$wpdb->get_col("select ID from $wpdb->posts where post_type = '$forum'") ;
 		//check this list against those the user is allowed to see, and create a list of valid ones for the wp_query
-		$allowed_posts = check_private_groups_topic_ids($post_ids) ;
+		$allowed_posts = private_groups_check_permitted_forums($forum_ids) ;
 	
 		
 		// the above generates a list of allowed forums, which is now added to the wp query parameters post__in if set sets which posts are valid to return
@@ -52,6 +52,29 @@ function private_groups_filter($args = '') {
 	//and return the valid forum list
     return apply_filters('pg_filter_forums_by_permissions', $bbp->forum_query->have_posts(), $bbp->forum_query);
 }
+
+function private_groups_check_permitted_forums($forum_ids) {
+	
+		$filtered_forums = array();
+		
+	
+				//Get Current User ID
+				$user_id = wp_get_current_user()->ID;
+				foreach ($forum_ids as $forum_id) 
+					{
+																
+						//check if user can view this forum (and hence posts in this forum)
+						if(private_groups_can_user_view_post($user_id, $forum_id))
+							{
+							array_push($filtered_forums, $forum_id);
+							}
+						
+					}		
+		return (array) $filtered_forums;
+	
+}
+
+
 
 /**
  * This function filters the list of sub-forums based on the the users group

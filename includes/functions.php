@@ -254,7 +254,8 @@ $user_id2 = wp_get_current_user()->ID;
 	
 	//confirmed topic
 	if( bbp_is_topic( $post_id) ) {
-	$forum_id_check = private_groups_get_forum_id_from_post_id($post_id, 'topic');
+	$topic=bbp_get_topic_post_type() ;
+	$forum_id_check = private_groups_get_forum_id_from_post_id($post_id, $topic);
 		//now we can check if the user can view this
 		if (!private_groups_can_user_view_post($user_id2,$forum_id_check)) 
 				return;
@@ -263,7 +264,8 @@ $user_id2 = wp_get_current_user()->ID;
 
 	// Confirmed reply
 	} elseif ( bbp_is_reply( $post_id ) ) {
-	$forum_id_check = private_groups_get_forum_id_from_post_id($post_id, 'reply');
+	$reply=bbp_get_reply_post_type() ;
+	$forum_id_check = private_groups_get_forum_id_from_post_id($post_id, $reply);
 		//now we can check if the user can view this
 		if (!private_groups_can_user_view_post($user_id2,$forum_id_check)) 
 		return ;

@@ -280,7 +280,7 @@ global $rpg_settingsf ;
 
 <p><i>Description : </i> the default view.  Allows up to 8 groups with unique combination of access to forums, but they only see those they have access to.</p>
 
-<p><i>To set : </i>Do not set the visibility below.</p>
+<p><i>To set : </i>Do not set the visibility.</p>
 
 <h4><span style="color:blue">All forum titles (and optionally descriptions) visible to both logged on and non-logged on users.</span></h4>
 
