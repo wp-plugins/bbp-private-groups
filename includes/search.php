@@ -50,7 +50,7 @@ function pg_has_search_results( $args = '' ) {
 
     // The default forum query with allowed forum ids array added
     $default['post__in'] = $allowed_posts;
-
+	if (empty ($allowed_posts )) $default['post__in'] = array(0) ;
     
 	//then return to bbp search code
 	/** Setup *****************************************************************/

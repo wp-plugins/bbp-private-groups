@@ -348,7 +348,8 @@ Private forums set visible to logged on users</span></h4>
 				?>
 					<br>No. forums that have this group set : 
 					<?php global $wpdb;
-					$forums=$wpdb->get_col("select ID from $wpdb->posts where post_type='forum'") ;
+					$forum = bbp_get_forum_post_type() ;
+					$forums=$wpdb->get_col("select ID from $wpdb->posts where post_type='$forum'") ;
 					//var_dump ($forums) ;
 					$countu=0 ;
 					foreach ($forums as $forum) {

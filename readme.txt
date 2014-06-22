@@ -4,7 +4,7 @@ Tags: forum, bbpress, bbp, private, groups
 Requires at least: 3.0.1
 Donate link: http://www.rewweb.co.uk/donate
 Tested up to: 3.9.1
-Stable tag: 1.8
+Stable tag: 1.8.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -167,5 +167,7 @@ allow Super sticky topics to be seen by all forums
 
 1.8 bug fix where forum is top level forum
 topic/reply/forum types implemented throughout
+
+1.8.1  bug fix for search function returning incorrect data when allowed posts was nil
 
 
