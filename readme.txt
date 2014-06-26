@@ -4,7 +4,7 @@ Tags: forum, bbpress, bbp, private, groups
 Requires at least: 3.0.1
 Donate link: http://www.rewweb.co.uk/donate
 Tested up to: 3.9.1
-Stable tag: 1.8.1
+Stable tag: 1.9.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -147,27 +147,30 @@ Go in to Dashboard>appearance>widgets
 
 
 == Changelog ==
-1.0 Version 1
 
-1.1 Minor changes
+1.9.1  Fix for moderator role in group views
 
-1.2 Author and replies issues fixed
+1.9 fix to forum subscription display in profile
 
-1.3 topics and replies paging fixed
+1.8.1  bug fix for search function returning incorrect data when allowed posts was nil
 
-1.4.1 compatibility with 'mark as read' plugin
-
-1.5 Amended to have unlimited groups
-
-1.6 Shortcode [bbp-topic-form] now only shows allowed forums
+1.8 bug fix where forum is top level forum
+topic/reply/forum types implemented throughout
 
 1.7 Moderators can now be set to moderate all forums or just their group ones (plus any open forums)
 Improved topic filtering to speed performance
 allow Super sticky topics to be seen by all forums
 
-1.8 bug fix where forum is top level forum
-topic/reply/forum types implemented throughout
+1.6 Shortcode [bbp-topic-form] now only shows allowed forums
 
-1.8.1  bug fix for search function returning incorrect data when allowed posts was nil
+1.5 Amended to have unlimited groups
 
+1.4.1 compatibility with 'mark as read' plugin
 
+1.3 topics and replies paging fixed
+
+1.2 Author and replies issues fixed
+
+1.1 Minor changes
+
+1.0 Version 1

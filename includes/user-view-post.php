@@ -42,20 +42,19 @@ function private_groups_can_user_view_post( $user_id, $forum_id = '' ) {
 			if (!is_user_logged_in() ) {
 				$can_view = false;
 			}
+					
 			
-			
-
 			/*Check if user is keymaster*/
 			if ( bbp_is_user_keymaster()) 
 			$can_view = true; 
-		
-			if (user_can( $user_id, 'moderate' ) ) {
+			//now we'll check if the user is a moderator. 
+			else {
+			$role = bbp_get_user_role( $user_id );
 			$check=get_user_meta( $user_id, 'private_group',true);
-			if ($check=='') $can_view= true ;
-			}
-			
-			
-		
+			//if they are a mod, and they have no forum groups set, then they can moderate and see across all forums
+			if ($role == 'bbp_moderator' && (empty($check))) $can_view= true ;		
+			//otherwise if they are a moderator with groups set, then they can see (and moderate) only their visible forums - just as everyone else
+											
 			/* Else, let's check the user's group against the selected group. */
 			else {
 
@@ -66,6 +65,7 @@ function private_groups_can_user_view_post( $user_id, $forum_id = '' ) {
 		
 						$can_view = true;
 				}
+			}
 			}
 		}
 	

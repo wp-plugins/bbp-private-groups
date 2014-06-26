@@ -1,13 +1,42 @@
 <?php
-add_filter('bbp_has_forums', 'private_groups_filter', 10, 2);
+
+//version 1.9 amended call for has forums, and added subscriptions filter
+
+add_filter('bbp_before_has_forums_parse_args', 'private_groups_forums', 99, 1);
 add_filter('bbp_forum_get_subforums', 'private_groups_get_permitted_subforums', 10, 1);
 add_filter( 'bbp_before_forum_get_subforums_parse_args', 'bbp_list_private_groups_subforums' );
 add_filter('bbp_list_forums', 'custom_list_forums' );
+add_filter ( 'bbp_get_user_forum_subscriptions','private_groups_get_user_forum_subscriptions') ;
 /**
  * This function filters the list of forums based on the the users group
  * Much of this code is based on the work of Aleksandar Adamovic in his Tehnik BBPress Permissions - thanks !
  */
-function private_groups_filter($args = '') {
+
+ 
+ function private_groups_forums ($args) {
+ global $rpg_settingsf ;
+		//check if being called by function 'private_groups_get_user_forum_subscriptions' and if so skip filtering
+		if($args['subscriptions'] == 'yes' ) {
+		return $args ;
+		}
+		//if forums are visible to everyone, then skip filtering
+		if (!$rpg_settingsf['set_forum_visibility']) {
+		//Get an array of forums which the current user has permissions to view posts in
+		global $wpdb;
+		$forum=bbp_get_forum_post_type() ;
+		$forum_ids=$wpdb->get_col("select ID from $wpdb->posts where post_type = '$forum'") ;
+		//check this list against those the user is allowed to see, and create a list of valid ones for the wp_query
+		$allowed_posts = private_groups_check_permitted_forums($forum_ids) ;
+		// the above generates a list of allowed forums, which is now added to the wp query parameters post__in if set sets which posts are valid to return
+		$args['post__in'] = $allowed_posts;
+		return $args ;
+		}
+}
+		
+		 
+ 
+ //this function  was deprecated in version 1.9 and replaced with the better (!) private_groups_forums
+ function private_groups_filter($args = '') {
     global $rpg_settingsf ;
 	$bbp = bbpress();
 	//this code is from includes/forums/template bbp_forum_get_subforums and sets up which forums to look in based on user capabilities
@@ -43,11 +72,9 @@ function private_groups_filter($args = '') {
 		// the above generates a list of allowed forums, which is now added to the wp query parameters post__in if set sets which posts are valid to return
 		$meta_query['post__in'] = $allowed_posts;
 		}
-	
 	//parse the query to allow other developers to add filters
-    $bbp_f = bbp_parse_args($args, $meta_query, 'has_forums');
-
-    // Now we can run the forum list query
+	$bbp_f = bbp_parse_args($args, $meta_query, 'private_has_forums');
+	// Now we can run the forum list query
     $bbp->forum_query = new WP_Query($bbp_f);
 	//and return the valid forum list
     return apply_filters('pg_filter_forums_by_permissions', $bbp->forum_query->have_posts(), $bbp->forum_query);
@@ -339,6 +366,30 @@ function private_groups_get_dropdown_forums($forum_list) {
 					}				
 		return (array) $filtered_forums;
 	
+}
+
+function private_groups_get_user_forum_subscriptions( $user_id = 0 ) {
+
+	// Default to the displayed user
+	$user_id = bbp_get_user_id( $user_id );
+	if ( empty( $user_id ) ) {
+		return false;
+	}
+
+	// If user has subscriptions, load them
+	$subscriptions = bbp_get_user_subscribed_forum_ids( $user_id ) ;
+	//subscriptions => yes added to allow function 'private_group_forums' to skip filtering if it is called by this function
+	if ( !empty( $subscriptions ) ) {
+	$query = bbp_has_forums( array( 
+	'post__in' => $subscriptions,
+	'subscriptions' => 'yes'
+	) );
+		
+	} else {
+		$query = false;
+	}
+
+	return apply_filters( 'private_groups_get_user_forum_subscriptions', $query, $user_id );
 }
 
 
