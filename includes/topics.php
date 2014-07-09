@@ -1,9 +1,14 @@
 <?php
 
+//version 1.9.2 fixed private groups forums for subscriptions 
+
 add_filter ('bbp_before_has_topics_parse_args', 'pg_has_topics') ;
 
 function pg_has_topics( $args = '' ) {
-	
+	//check if being called by subscriptions and if so skip filtering (as you can only subscribe to forums you can already see)
+	if($args['post__in']) {
+	return $args ;
+	}
 	$default_post_parent   = bbp_is_single_forum() ? bbp_get_forum_id() : 'any';
 	
 	if ($default_post_parent == 'any') {

@@ -4,7 +4,7 @@ Tags: forum, bbpress, bbp, private, groups
 Requires at least: 3.0.1
 Donate link: http://www.rewweb.co.uk/donate
 Tested up to: 3.9.1
-Stable tag: 1.9.1
+Stable tag: 1.9.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -147,6 +147,9 @@ Go in to Dashboard>appearance>widgets
 
 
 == Changelog ==
+
+1.9.2 Fix for array error on forum visibility
+improved filter for topic subscriptions
 
 1.9.1  Fix for moderator role in group views
 
