@@ -151,7 +151,7 @@ A shortcode to list users either across all groups or per group
 
 == Changelog ==
 
-1.9.3 list user shortcode added
+2.0.1 list user shortcode added
 User Management (bulk change of users) added
 Management information - list of forums added
 
