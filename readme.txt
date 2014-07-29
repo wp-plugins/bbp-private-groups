@@ -4,7 +4,7 @@ Tags: forum, bbpress, bbp, private, groups
 Requires at least: 3.0.1
 Donate link: http://www.rewweb.co.uk/donate
 Tested up to: 3.9.1
-Stable tag: 1.9.2
+Stable tag: 2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -62,7 +62,7 @@ To install this plugin :
 
 Go to Dashboard>settings>Private Groups
 
-There are 3 settings tabs.
+There are 3 settings tabs and 2 managemetn tags.
 
 <em><strong>Forum Visibility tab.</strong></em>
 
@@ -109,15 +109,11 @@ Go in to Dashboard&gt;appearance&gt;widgets
 </ol>
 <strong> </strong>
 
+<em><strong>Management Information</strong></em>
+This tab lists the groups, what forums are allocated to them, and the number of users each group has
 
-
-
-
-
-
-
-
-
+<em><strong>User Management</strong></em>
+This tab allows for the bulk change of users between (and to and from) the groups
 
 
 To set forums
@@ -137,6 +133,13 @@ Go in to Dashboard>appearance>widgets
 1.You will see three new wiggets starting with '(Private Groups)' and covering topics, replies and forum list.
 2.If you are using the standard bbPress topic, reply or forum list widgets, you should remove these from your sidebar and replace them with the ‘tehnik’ ones
 
+Shortcode
+
+A shortcode to list users either across all groups or per group
+
+[list-pg-users ]  lists all groups and their users
+
+[list-pg-users group=$group] lists users of a single group name eg [list-pg-users group='developers']
 
 
 == Screenshots ==
@@ -147,6 +150,11 @@ Go in to Dashboard>appearance>widgets
 
 
 == Changelog ==
+
+1.9.3 list user shortcode added
+User Management (bulk change of users) added
+Management information - list of forums added
+
 
 1.9.2 Fix for array error on forum visibility
 improved filter for topic subscriptions

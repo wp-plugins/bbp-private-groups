@@ -4,7 +4,7 @@
 Plugin Name: bbP private groups
 Plugin URI: http://www.rewweb.co.uk/bbp-private-groups/
 Description: This plugin adds private groups to the forums, allocating users to groups, and combinations of forums to those groups, creating multiple closed forums.
-Version: 1.9.2
+Version: 2.0
 Author: Robin Wilson
 Author URI: http://www.rewweb.co.uk
 License: GPL2
@@ -53,4 +53,6 @@ include(PG_PLUGIN_DIR . '/includes/search.php');
 include(PG_PLUGIN_DIR . '/includes/topics.php');
 include(PG_PLUGIN_DIR . '/includes/replies.php');
 include(PG_PLUGIN_DIR . '/includes/mark-as-read-filter.php');
+include(PG_PLUGIN_DIR . '/includes/shortcodes.php');
+include(PG_PLUGIN_DIR . '/includes/user_management.php');
 

@@ -25,7 +25,8 @@ global $rpg_settingsf ;
 			<?php //tests if we have selected a tab ?>
 			<?php
             if( isset( $_GET[ 'tab' ] ) ) {
-                $active_tab = $_GET[ 'tab' ];}
+				if ($active_tab == 'user_management') pg_user_management($tab) ; 
+				$active_tab = $_GET[ 'tab' ];}
 			else {$active_tab= 'forum_visibility_settings';
             } // end if
         ?>
@@ -36,9 +37,9 @@ global $rpg_settingsf ;
 	<a href="?page=bbp-private-group-settings&tab=forum_visibility_settings" class="nav-tab <?php echo $active_tab == 'forum_visibility_settings' ? 'nav-tab-active' : ''; ?>">Forum Visibility settings</a>
 	<a href="?page=bbp-private-group-settings&tab=general_settings" class="nav-tab <?php echo $active_tab == 'general_settings' ? 'nav-tab-active' : ''; ?>">General Settings</a>
  	<a href="?page=bbp-private-group-settings&tab=group_name_settings" class="nav-tab <?php echo $active_tab == 'group_name_settings' ? 'nav-tab-active' : ''; ?>">Group Name Settings</a>
-	<a href="?page=bbp-private-group-settings&tab=help" class="nav-tab <?php echo $active_tab == 'help' ? 'nav-tab-active' : ''; ?>">Help</a></h2>
-	<a href="?page=bbp-private-group-settings&tab=management_information"  class="nav-tab <?php echo $active_tab == 'Management_information' ? 'nav-tab-active' : ''; ?>">Management Information</a></h2>
-	
+	<a href="?page=bbp-private-group-settings&tab=help" class="nav-tab <?php echo $active_tab == 'help' ? 'nav-tab-active' : ''; ?>">Help</a>
+	<a href="?page=bbp-private-group-settings&tab=management_information"  class="nav-tab <?php echo $active_tab == 'Management_information' ? 'nav-tab-active' : ''; ?>">Management Information</a>
+	<a href="?page=bbp-private-group-settings&tab=user_management"  class="nav-tab <?php echo $active_tab == 'user_management' ? 'nav-tab-active' : ''; ?>">User Management</a></h2>	
 	<table class="form-table">
 			<tr>
 			
@@ -310,15 +311,15 @@ Private forums set visible to logged on users</span></h4>
 ?>
 
 <?php //************************* Management Info *************************// ?>
-			<?php if( $active_tab == 'management_information' ) { ?>
-			<form method="post" action="options.php">
-			
+			<?php if( $active_tab == 'management_information' ) { 
+			?>
+					
 			<?php settings_fields( 'rpg_group_settings' ); ?>
 			
 			<table class="form-table">
 			
 			<tr valign="top">
-			<th colspan="2"><p> This section is planned for future releases - at the moment it just shows you no. users and forums.</p></th>
+			
 			</tr>
 			<?php 
 			$count=count ($rpg_groups) ;
@@ -344,34 +345,35 @@ Private forums set visible to logged on users</span></h4>
 					if ($check==$name) $countu++ ;
 					}
 					echo $countu ;
+					?>
 					
-				?>
-					<br>No. forums that have this group set : 
+
+					<br>Forums in this group :
 					<?php global $wpdb;
 					$forum = bbp_get_forum_post_type() ;
 					$forums=$wpdb->get_col("select ID from $wpdb->posts where post_type='$forum'") ;
-					//var_dump ($forums) ;
 					$countu=0 ;
+					echo '<ul><i>' ;
 					foreach ($forums as $forum) {
 						$meta = (array)get_post_meta( $forum, '_private_group', false );
-						//var_dump ($meta) ;
-						//echo '<br>' ;
 						foreach ($meta as $meta2) {
 							if ($meta2==$name) {
+							$ftitle=bbp_forum_title($forum) ;
+							echo '<li>'.$ftitle.'</li>' ;
 							$countu++ ;
-							//echo $meta2 ;
 							}
 						}
 								
 					}
-					echo $countu ;
+					echo '</ul></i>' ;
+					
+					echo 'No. forums that have this group set : '.$countu ;
 					?>
 					</td></tr>
 					<?php }
 					 			
 					?>
-									
-					
+													
 					</table>
 					
 				</form>
@@ -382,16 +384,27 @@ Private forums set visible to logged on users</span></h4>
 }
 ?>
 
-
-
-
-
-
 <?php
+//****  user management
+if ($active_tab == 'user_management' ) {
+$group = 'all' ;
+pg_user_management($group) ;
 }
 
-?>
-<?php
+
+
+
+
+
+//end of tab function
+}
+
+
+
+
+
+
+
 // register the plugin settings
 function rpg_register_settings() {
 

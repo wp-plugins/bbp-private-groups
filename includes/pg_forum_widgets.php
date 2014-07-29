@@ -425,9 +425,8 @@ class pg_Topics_Widget extends WP_Widget {
             <small><?php _e('"0" to show only root - "any" to show all', 'bbpress'); ?></small>
         </p>
 
-        <p><label for="<?php echo $this->get_field_id('show_date'); ?>"><?php _e('Show post date:', 'bbpress'); ?> <input type="checkbox" id="<?php echo $this->get_field_id('show_date'); ?>" name="<?php echo $this->get_field_name('show_date'); ?>" <?php checked('on', $settings['show_date']); ?> /></label></p>
-        <p><label for="<?php echo $this->get_field_id('show_user'); ?>"><?php _e('Show topic author:', 'bbpress'); ?> <input type="checkbox" id="<?php echo $this->get_field_id('show_user'); ?>" name="<?php echo $this->get_field_name('show_user'); ?>" <?php checked('on', $settings['show_user']); ?> /></label></p>
-
+        <p><label for="<?php echo $this->get_field_id('show_date'); ?>"><?php _e('Show post date:', 'bbpress'); ?> <input type="checkbox" id="<?php echo $this->get_field_id('show_date'); ?>" name="<?php echo $this->get_field_name('show_date'); ?>" <?php checked( true, $settings['show_date'] ); ?> value="1" /></label></p>
+        <p><label for="<?php echo $this->get_field_id('show_user'); ?>"><?php _e('Show topic author:', 'bbpress'); ?> <input type="checkbox" id="<?php echo $this->get_field_id('show_user'); ?>" name="<?php echo $this->get_field_name('show_user'); ?>" <?php checked( true, $settings['show_user'] ); ?> value="1" /></label></p>
         <p>
             <label for="<?php echo $this->get_field_id('order_by'); ?>"><?php _e('Order By:', 'bbpress'); ?></label>
             <select name="<?php echo $this->get_field_name('order_by'); ?>" id="<?php echo $this->get_field_name('order_by'); ?>">
@@ -651,8 +650,8 @@ class pg_Replies_Widget extends WP_Widget {
 
         <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'bbpress'); ?> <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($settings['title']); ?>" /></label></p>
         <p><label for="<?php echo $this->get_field_id('max_shown'); ?>"><?php _e('Maximum replies to show:', 'bbpress'); ?> <input class="widefat" id="<?php echo $this->get_field_id('max_shown'); ?>" name="<?php echo $this->get_field_name('max_shown'); ?>" type="text" value="<?php echo esc_attr($settings['max_shown']); ?>" /></label></p>
-        <p><label for="<?php echo $this->get_field_id('show_date'); ?>"><?php _e('Show post date:', 'bbpress'); ?> <input type="checkbox" id="<?php echo $this->get_field_id('show_date'); ?>" name="<?php echo $this->get_field_name('show_date'); ?>" <?php checked('on', $settings['show_date']); ?> /></label></p>
-        <p><label for="<?php echo $this->get_field_id('show_user'); ?>"><?php _e('Show reply author:', 'bbpress'); ?> <input type="checkbox" id="<?php echo $this->get_field_id('show_user'); ?>" name="<?php echo $this->get_field_name('show_user'); ?>" <?php checked('on', $settings['show_user']); ?> /></label></p>
+        <p><label for="<?php echo $this->get_field_id('show_date'); ?>"><?php _e('Show post date:', 'bbpress'); ?> <input type="checkbox" id="<?php echo $this->get_field_id('show_date'); ?>" name="<?php echo $this->get_field_name('show_date'); ?>" <?php checked( true, $settings['show_date'] ); ?> value="1" /></label></p>
+        <p><label for="<?php echo $this->get_field_id('show_user'); ?>"><?php _e('Show reply author:', 'bbpress'); ?> <input type="checkbox" id="<?php echo $this->get_field_id('show_user'); ?>" name="<?php echo $this->get_field_name('show_user'); ?>" <?php checked( true, $settings['show_user'] ); ?> value="1" /></label></p>
 
         <?php
     }
