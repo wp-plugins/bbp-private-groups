@@ -8,6 +8,7 @@ global $rpg_settingsf ;
 	global $rpg_settingsg ;
 	global $rpg_groups;
 	global $rpg_group_last ;
+	global $rpg_roles ;
 	
 	
 	?>
@@ -39,7 +40,8 @@ global $rpg_settingsf ;
  	<a href="?page=bbp-private-group-settings&tab=group_name_settings" class="nav-tab <?php echo $active_tab == 'group_name_settings' ? 'nav-tab-active' : ''; ?>">Group Name Settings</a>
 	<a href="?page=bbp-private-group-settings&tab=help" class="nav-tab <?php echo $active_tab == 'help' ? 'nav-tab-active' : ''; ?>">Help</a>
 	<a href="?page=bbp-private-group-settings&tab=management_information"  class="nav-tab <?php echo $active_tab == 'Management_information' ? 'nav-tab-active' : ''; ?>">Management Information</a>
-	<a href="?page=bbp-private-group-settings&tab=user_management"  class="nav-tab <?php echo $active_tab == 'user_management' ? 'nav-tab-active' : ''; ?>">User Management</a></h2>	
+	<a href="?page=bbp-private-group-settings&tab=user_management"  class="nav-tab <?php echo $active_tab == 'user_management' ? 'nav-tab-active' : ''; ?>">User Management</a>	
+	<a href="?page=bbp-private-group-settings&tab=role_assignment"  class="nav-tab <?php echo $active_tab == 'role_assignment' ? 'nav-tab-active' : ''; ?>">Assign groups to roles</a></h2>	
 	<table class="form-table">
 			<tr>
 			
@@ -264,51 +266,6 @@ global $rpg_settingsf ;
 }
 ?>
 
-<?php //************************* help page *************************// ?>
-			<?php if( $active_tab == 'help' ) { ?>
-			<form method="post" action="options.php">
-
-				<table class="form-table">
-					
-					<tr valign="top">
-						<th colspan="2">
-						
-						<h3>Forum Visibility Settings</h3>
-
-<p>You have various display options</p>
-
-<h4><span style="color:blue">Only logged in users see group forums, and even then only ones that they have access to.</span></h4>
-
-<p><i>Description : </i> the default view.  Allows up to 8 groups with unique combination of access to forums, but they only see those they have access to.</p>
-
-<p><i>To set : </i>Do not set the visibility.</p>
-
-<h4><span style="color:blue">All forum titles (and optionally descriptions) visible to both logged on and non-logged on users.</span></h4>
-
-<p><i>Description: </i>Users and non-users will be able to see that group forums exist, but not access topics/replies.</p>
-
-<p><i>Possible Usage : </i>show that lots of forums exist, with ability to go to “sign-up” page.</p>
-
-<p><i>To set: </i>Set visibility to public below and set forums to public in each forum’s attributes (dashboard>forums).</p>
-
-<h4><span style="color:blue">Public forums titles (and optionally descriptions) visible to logged on and non-logged on users.
-Private forums set visible to logged on users</span></h4>
-
-<p><i>Description : </i>Non-logged in will only see group forums that are public, but not access topics/replies.  Logged in users will see and access topics/replies for Private Group forums that are set to public, private forums that have no groups set will be accessible to all logged in users, but private group forums that the user does not belong to will be hidden. </p> 
-
-<p><i>Possible Usage : </i>Show some group forums exists, whilst keeping others visible only for private groups.  Allows rich display options for each group, and user.</p>
-
-<p><i>To set : </i>Set visibility to public below and set any private forums to private in that forum’s attributes (dashboard>forums). </p>
-
- </th>
-					</tr>
-					<a href="http://www.rewweb.co.uk/wp-content/uploads/2014/04/private-group-roles1.jpg"><img src="http://www.rewweb.co.uk/wp-content/uploads/2014/04/private-group-roles1.jpg"/> </a>
-					</form>
-		</div><!--end sf-wrap-->
-	</div><!--end wrap-->
-<?php
-}
-?>
 
 <?php //************************* Management Info *************************// ?>
 			<?php if( $active_tab == 'management_information' ) { 
@@ -390,12 +347,20 @@ if ($active_tab == 'user_management' ) {
 $group = 'all' ;
 pg_user_management($group) ;
 }
+?>
 
+<?php
+//****  Help
+if ($active_tab == 'help' ) {
+pg_help();
+}
+?>
 
-
-
-
-
+<?php
+//****  role assignment
+if ($active_tab == 'role_assignment' ) {
+pg_role_assignment() ;
+}
 //end of tab function
 }
 
@@ -411,6 +376,7 @@ function rpg_register_settings() {
 	register_setting( 'rpg_forum_settings', 'rpg_settingsf' );
 	register_setting( 'rpg_general_settings', 'rpg_settingsg' );
 	register_setting( 'rpg_group_settings', 'rpg_groups' );
+	register_setting( 'rpg_roles_settings', 'rpg_roles' );
 	}
 //call register settings function
 add_action( 'admin_init', 'rpg_register_settings' );
@@ -454,3 +420,4 @@ function activate_new_group() {
 	$item6 =  $rpg_groups['activate_new_group'] ;
 	echo '<input name="rpg_groups[activate_new_group]" id="rpg_groups[activate_new_group]" type="checkbox" value="1" class="code"  /> Click and then press "save groups" to add a new group' ;
   }
+  

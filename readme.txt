@@ -13,11 +13,11 @@ For bbPress - Creates private forum groups
 == Description ==
 This Plugin creates unlimited private forum groups.  
 
-Forums are then allocated to one or more groups, and users allocated to one group.
+Forums are then allocated to one or more groups, and users allocated to one or more groups.
 
 What this achieves
 unlimited private groups
-Each user is set to a group, and each forum can have any or all the groups associated with it
+Each user is set to a group or groups, and each forum can have any or all the groups associated with it
 Any number of public forums combined with any number of group forums.  The group forums can be individually set to public or private.
 Forum title and description (but not topics or replies) can be set to be visible to non-group users, allowing people to see that a forum exists but not access it
 Separate pages can be set to allow redirection of non group users for sign-up or information
@@ -62,7 +62,7 @@ To install this plugin :
 
 Go to Dashboard>settings>Private Groups
 
-There are 3 settings tabs and 2 managemetn tags.
+There are 4 settings tabs and 2 management tags.
 
 <em><strong>Forum Visibility tab.</strong></em>
 
@@ -86,7 +86,7 @@ In general settings, you have the ability to hide topic and reply counts, show s
 
 <em><strong>Group Name Settings</strong></em>
 
-Here you set  'friendly' names for the groups, to help you remember.  These names do not affect how the restrictions work, group 1 will remain group 1 whatever you name it.
+Here you set 'friendly' names for the groups, to help you remember.  These names do not affect how the restrictions work, group 1 will remain group 1 whatever you name it.
 
 <strong>To set forums</strong>
 
@@ -113,7 +113,10 @@ Go in to Dashboard&gt;appearance&gt;widgets
 This tab lists the groups, what forums are allocated to them, and the number of users each group has
 
 <em><strong>User Management</strong></em>
-This tab allows for the bulk change of users between (and to and from) the groups
+This tab allows for the bulk change of users between (and to and from) the groups, and via user edit allows multiple group allocation
+
+<em><strong>Assign groups to roles</strong></em>
+This tab allow those of you who use membership plugins etc. to assign a group against a wordpress or custom role. 
 
 
 To set forums
@@ -151,7 +154,11 @@ A shortcode to list users either across all groups or per group
 
 == Changelog ==
 
-1.9.3 list user shortcode added
+2.2 Multiple groups for users added
+
+2.1  Optional assign users to roles added to settings
+
+2.0.1 list user shortcode added
 User Management (bulk change of users) added
 Management information - list of forums added
 

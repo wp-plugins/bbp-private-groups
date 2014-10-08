@@ -8,7 +8,7 @@
  *  Keymasters can always view, and moderators with no group set can view
  *
  * 
- *Much of this code is Justin Tadlocks' from the members plugin - thanks Justin for awesome work ! 
+ *Some of this code is Justin Tadlocks' from the members plugin - thanks Justin for awesome work ! 
  */
  
  function private_groups_can_user_view_post_id($forum_id) {
@@ -29,7 +29,7 @@ function private_groups_can_user_view_post( $user_id, $forum_id = '' ) {
 	/* Get the groups for the forum */
 		$groups = get_post_meta( $forum_id, '_private_group', false );
 
-		/* If we have groups set for this forum  let's get to work. */
+		/* If we have groups set for this forum let's get to work. */
 		if ( !empty( $groups ) && is_array( $groups ) ) {
 
 			/**
@@ -45,25 +45,28 @@ function private_groups_can_user_view_post( $user_id, $forum_id = '' ) {
 					
 			
 			/*Check if user is keymaster*/
-			if ( bbp_is_user_keymaster()) 
-			$can_view = true; 
+			if ( bbp_is_user_keymaster()) $can_view = true; 
 			//now we'll check if the user is a moderator. 
 			else {
 			$role = bbp_get_user_role( $user_id );
 			$check=get_user_meta( $user_id, 'private_group',true);
 			//if they are a mod, and they have no forum groups set, then they can moderate and see across all forums
 			if ($role == 'bbp_moderator' && (empty($check))) $can_view= true ;		
-			//otherwise if they are a moderator with groups set, then they can see (and moderate) only their visible forums - just as everyone else
+			//otherwise if they are a moderator with groups set, then they can see (and moderate) only their visible forums 
+			//- just as everyone else does
 											
 			/* Else, let's check the user's group against the selected group. */
 			else {
 
 				/* Loop through each group and set $can_view to true if the user has this group. */
 				$check=get_user_meta( $user_id, 'private_group',true);
+								
 				foreach ( $groups as $group ) {
-				if ($check==$group ) 
-		
-						$can_view = true;
+				//single group set?
+				if ($check==$group ) $can_view = true;
+				//multiple group set
+				if (strpos($check, '*'.$group.'*') !== FALSE) $can_view = true;
+						
 				}
 			}
 			}

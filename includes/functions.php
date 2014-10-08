@@ -4,6 +4,8 @@ add_action('bbp_template_redirect', 'private_group_enforce_permissions', 1);
 add_filter('protected_title_format', 'pg_remove_protected_title');
 add_filter('private_title_format', 'pg_remove_private_title');
 add_filter('bbp_get_forum_freshness_link', 'custom_freshness_link' );
+add_filter('bbp_get_author_link', 'pg_get_author_link' ) ;
+add_action ('bbp_user_register', 'pg_role_group') ;
 
 
 
@@ -277,5 +279,29 @@ $user_id2 = wp_get_current_user()->ID;
 		return ;
 
 }
-add_filter('bbp_get_author_link', 'pg_get_author_link' ) ;
+
+
+//This function is added to bbp_user_register which in turn hooks to wordpress user_register.  It checks if the user role has a group set against it, and if so assigns that to the user
+
+function pg_role_group ($user_id) {
+$test=get_option ('rpg_roles') ;
+//if no roles set, then exit
+if (empty ($test)) return ;
+//we have roles set, so now cycle through the roles for this user
+//$user_id = get_current_user_id(); 
+//if ($user_id == 0) return ;  // bail if no user ID
+	$roles = get_usermeta( $user_id, 'wp_capabilities',false )  ;
+		foreach ($roles as $role=>$value) {
+				foreach ($test as $check=>$group){
+				if ($role ==  $check ) {
+					if ($group != 'no-group') update_user_meta( $user_id, 'private_group', $group); 
+					}
+				}		
+		}
+}
+
+
+
+
+
 ?>

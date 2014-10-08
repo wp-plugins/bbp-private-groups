@@ -14,26 +14,40 @@ function rpg_user_profile_field() {
 	 <table class="form-table">
 			<tbody>
 				<tr>
-					<th><label for="bbp-private-groups"><?php esc_html_e( 'Group', 'private-groups' ); ?></label></th>
+					<th><label for="bbp-private-groups"><?php esc_html_e( 'Private Groups', 'private-groups' ); ?></label></th>
 					<td>
 
-						<select name="bbp-private-groups" id="group">
 						<?php global $rpg_groups ;
 							if (empty( $rpg_groups ) ) : ?>
-
+							
 							<option value=""><?php esc_html_e( '&mdash; No groups yet set up &mdash;', 'private-groups' ); ?></option>
 
 							<?php else : ?>
-							<?php $private_group = get_user_meta($user_id, 'private_group', true); ?>
-								<option value="" selected="selected"><?php esc_html_e( '&mdash; No group &mdash;', 'bbpress' ); ?></option>
-
+							
+							
+							<!-- checkbox to activate -->
+					<?php $private_group = get_user_meta($user_id, 'private_group', true); ?>
+				
+					
+					<?php foreach ( $rpg_groups as $group => $details ) : ?>
+						<tr valign="top">  
+						<th><?php echo $group." ".$details ; ?></th>
+						<td>
+						<?php
+						$check=0 ;
+						echo $private_group ;
+						if (strpos($private_group, '*'.$group.'*') !== FALSE) $check=1 ;
+						elseif($private_group == 	$group) $check=1 ;
+						//echo $check;
+						echo '<input name="'.$group.'" id="group" type="checkbox" ' ;
+						if( $check ) echo 'checked="checked"'; 
+						echo ' /> Click to add this group';
+						?>
+						</td>
+						</tr>
+						<?php endforeach; ?>
 							<?php endif; ?>
-
-							<?php foreach ( $rpg_groups as $group => $details ) : ?>
-
-								<option <?php selected( $private_group, $group ); ?> value="<?php echo esc_attr( $group ); ?>"><?php echo $group.' '.$details ; ?></option>
-
-							<?php endforeach; ?>
+							
 
 						</select>
 					</td>
@@ -50,19 +64,19 @@ function rpg_user_profile_field() {
 		// User profile edit/display actions
 		add_action( 'edit_user_profile', 'rpg_user_profile_field', 50,2 )  ;
 		
-function bbp_edit_user_rpg( $user_id ) {
-	$private_group = ( $_POST['bbp-private-groups'] ) ;
-	
+function bbp_edit_user_pg( $user_id ) {
+	global $rpg_groups ;
+	$string='*' ;
+		foreach ( $rpg_groups as $pggroup => $details) { 
+		$item='private_group_'.$pggroup ;
+		$data = ($_POST[$pggroup] );
+			if ($data=='on') {
+			$string=$string.$pggroup.'*' ;
+		}
+	}
+	if ($string=='*') $string = '' ;
+	update_user_meta( $user_id, 'private_group', $string);
+	}
 
-	// Update town user meta
-	if ( !empty( $private_group ) )
-		update_user_meta( $user_id, 'private_group', $private_group);
+add_action( 'edit_user_profile_update', 'bbp_edit_user_pg' );
 
-	// Delete town user meta
-	else
-		delete_user_meta( $user_id, 'private_group' );
-		
-
-}
-
-add_action( 'edit_user_profile_update', 'bbp_edit_user_rpg' );
