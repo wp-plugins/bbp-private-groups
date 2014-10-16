@@ -154,6 +154,8 @@ A shortcode to list users either across all groups or per group
 
 == Changelog ==
 
+2.3 Minor correction
+
 2.2 Multiple groups for users added
 
 2.1  Optional assign users to roles added to settings
