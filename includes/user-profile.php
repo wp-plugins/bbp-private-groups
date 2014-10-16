@@ -35,7 +35,6 @@ function rpg_user_profile_field() {
 						<td>
 						<?php
 						$check=0 ;
-						echo $private_group ;
 						if (strpos($private_group, '*'.$group.'*') !== FALSE) $check=1 ;
 						elseif($private_group == 	$group) $check=1 ;
 						//echo $check;
