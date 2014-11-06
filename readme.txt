@@ -154,6 +154,8 @@ A shortcode to list users either across all groups or per group
 
 == Changelog ==
 
+2.4 Correction to management information user count
+
 2.3 Minor correction
 
 2.2 Multiple groups for users added
