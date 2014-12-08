@@ -45,7 +45,7 @@ The widgets (bbpress) forums list, (bbpress) recent replies, and (bbpress) recen
 
 
 
-Works with bbpress 2.5.3
+Works with bbpress 2.5.3 or higher
 
 
 
@@ -153,6 +153,8 @@ A shortcode to list users either across all groups or per group
 
 
 == Changelog ==
+
+2.5 updated to allow internationalization
 
 2.4 Correction to management information user count
 
