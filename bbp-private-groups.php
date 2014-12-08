@@ -64,6 +64,6 @@ include(PG_PLUGIN_DIR . '/includes/shortcodes.php');
 include(PG_PLUGIN_DIR . '/includes/user_management.php');
 include(PG_PLUGIN_DIR . '/includes/role_assignment.php');
 include(PG_PLUGIN_DIR . '/includes/help.php');
-include(PG_PLUGIN_DIR . '/lang/readme.txt');
+
 
 
