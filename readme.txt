@@ -3,7 +3,7 @@ Contributors: Robin Wilson
 Tags: forum, bbpress, bbp, private, groups
 Requires at least: 3.0.1
 Donate link: http://www.rewweb.co.uk/donate
-Tested up to: 4.1
+Tested up to: 4.0.1
 Stable tag: 2.5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -153,6 +153,8 @@ A shortcode to list users either across all groups or per group
 
 
 == Changelog ==
+
+2.5.4 remove author link filter as not required
 
 2.5.3 fix search pagnination
 
