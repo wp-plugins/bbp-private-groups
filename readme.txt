@@ -154,6 +154,8 @@ A shortcode to list users either across all groups or per group
 
 == Changelog ==
 
+2.5.6 change to forum_filters.php and topics.php to correct minor syntax errors https://wordpress.org/support/topic/couple-of-warnings-in-latest-version?replies=6 and https://wordpress.org/support/topic/bbp_list_forums-filter-bug?replies=2
+
 2.5.5 add latest activity widget, corrected sub-forum display and added column option
 
 2.5.4 remove author link filter as not required
