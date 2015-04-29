@@ -23,10 +23,27 @@ Function pg_role_assignment () { ?>
 			<?php _e ('For instance you may want all wordpress authors to automatically belong to a particular group, or you may have created a role called "member" in your membership plugin, and want to automatically give these access to a private group called say membership.' , 'bbp-private-groups') ; ?>
 			</p>
 			<p>
-			<?php _e ('This section only applies to wordpress roles !' , 'bbp-private-groups' ) ; ?>
+			<?php _e ('This section only applies to wordpress or custom or membership roles, NOT bbpress roles !' , 'bbp-private-groups' ) ; ?>
 			</p>
 			</th></tr>
-				
+			
+			<tr><td colspan=2><hr></td>
+			
+			<!-- checkbox to activate login -->
+					</tr>
+					<tr valign="top">
+					<td colspan=2><?php _e('Additionally you can optionally select to assign roles on login for users who do not have a role assigned. This is useful where your membership plugin does not use Wordpress registration, so the above does not work!. You can assign a <i> different </i> role to individual users manually, but if you change an individual user to have no groups, then the group for that role will be assigned on next login as the plugin sees this as blank!', 'bbp-private-groups'); ?></td>
+					</tr>
+					<tr valign="top">  
+					<th><?php _e('Add group on login', 'bbp-private-groups'); ?></th>
+					<td>
+					<?php global $rpg_roles ;
+					$item =  $rpg_roles['login'] ;
+					echo '<input name="rpg_roles[login]" id="rpg_roles[login]" type="checkbox" value="1" class="code" ' . checked( 1,$item, false ) . ' />' ;
+					?>
+					</td>
+			<tr><td colspan=2><hr></td>	
+							
 			<?php foreach($all_roles as $role=>$value) { 
 			$name = $value['name'] ; 
 			$item="rpg_roles[".$role."]" ;
@@ -41,7 +58,7 @@ Function pg_role_assignment () { ?>
 				 	<?php if ($rpg_roles[$role] != 'no-Group') {
 					$name2= $rpg_roles[$role] ;
 					$item2=$name2.'  '.$rpg_groups[$name2] ;
-					if ($name2 != '') $item2=__( 'Group', 'bbp-private-groups' ).$g.'  '.$rpg_groups[$name2]  ;
+					if ($name2 != '') $item2=$name2.'  '.$rpg_groups[$name2]  ;
 					?>
 					<option value="<?php echo $name2 ?>"><?php echo $item2 ?></option>
 					<?php  }		?>			
@@ -75,6 +92,5 @@ Function pg_role_assignment () { ?>
 	</div><!--end wrap-->
 	
 <?php
-
 }
 ?>

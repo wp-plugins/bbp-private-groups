@@ -4,11 +4,15 @@ add_action('bbp_template_redirect', 'private_group_enforce_permissions', 1);
 add_filter('protected_title_format', 'pg_remove_protected_title');
 add_filter('private_title_format', 'pg_remove_private_title');
 add_filter('bbp_get_forum_freshness_link', 'custom_freshness_link' );
+//add assign role to register, 
+add_action ('bbp_user_register', 'pg_role_group') ;
+//and to wp-login
+add_action('wp_login', 'pg_assign_role_on_login', 10, 2);
+
+
+add_action('wp_login', 'pg_assign_role_on_login', 10, 2);
 //removed as you can't filter topics and replies ans they 'return' before the filter
 //add_filter('bbp_get_author_link', 'pg_get_author_link' ) ;
-add_action ('bbp_user_register', 'pg_role_group') ;
-
-
 
 /*
  * Check if the current user has rights to view the given Post ID
@@ -301,9 +305,27 @@ if (empty ($test)) return ;
 				}		
 		}
 }
-
-
-
-
+//this function assigns user to roles on login
+function pg_assign_role_on_login($user_login, $user) {
+//bail if not set in $rpg_roles
+global $rpg_roles ;
+if (!isset ($rpg_roles['login'])) return ;
+$test=get_option ('rpg_roles') ;
+//if no roles set, then exit
+if (empty ($test)) return ;
+//we have roles set, so now cycle through the roles for this user
+$user_id = $user->ID ; 
+if ($user_id == 0) return ;  // bail if no user ID
+	//$roles = get_usermeta( $user_id, 'wp_capabilities',false )  ;
+	global $wp_roles;
+	$all_roles = $wp_roles->roles ;
+	foreach ($all_roles as $role=>$value) {
+				foreach ($test as $check=>$group){
+				if ($role ==  $check ) {
+					if ($group != 'no-group') update_user_meta( $user_id, 'private_group', $group); 
+					}
+				}		
+		}
+}
 
 ?>

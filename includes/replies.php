@@ -10,13 +10,15 @@ function pg_get_user_replies_created( $user_id = 0 ) {
 	$current_user= wp_get_current_user()->ID;
 	if ( empty( $user_id ) )
 		return false;
-		
+	
+		$limit='y' ;
 		if ( bbp_is_user_keymaster()) $limit='n' ; 
 		
 		if (user_can( $current_user, 'moderate' ) ) {
 		$check=get_user_meta( $current_user, 'private_group',true);
 		if ($check=='') $limit='n' ;
 		}
+	//skip filtering unless needed	
 	if ($limit != 'n') {
 	global $wpdb;
 	$reply=bbp_get_reply_post_type() ;

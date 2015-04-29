@@ -37,7 +37,7 @@
 <?php _e('POSSIBLE USAGE : show that lots of forums exist, with ability to go to “sign-up” page.' , 'bbp-private-groups' ) ; ?></p>
 
 <p>
-<?php _e('TO SET : Set visibility to public below and set forums to public in each forum’s attributes (dashboard>forums).' , 'bbp-private-groups' ) ; ?></p>
+<?php _e('TO SET : Set visibility to public and set forums to public in each forum’s attributes (dashboard>forums).' , 'bbp-private-groups' ) ; ?></p>
 
 <h4><span style="color:blue">
 <?php _e('Public forums titles (and optionally descriptions) visible to logged on and non-logged on users. Private forums set visible to logged on users' , 'bbp-private-groups' ) ; ?>
@@ -50,7 +50,7 @@
 <?php _e('POSSIBLE USAGE : Show some group forums exists, whilst keeping others visible only for private groups.  Allows rich display options for each group, and user.' , 'bbp-private-groups' ) ; ?></p>
 
 <p>
-<?php _e('TO SET : Set visibility to public below and set any private forums to private in that forum’s attributes (dashboard>forums).' , 'bbp-private-groups' ) ; ?> </p>
+<?php _e('TO SET : Set visibility to public and set any private forums to private in that forum’s attributes (dashboard>forums).' , 'bbp-private-groups' ) ; ?> </p>
 
  </th>
 </tr>
