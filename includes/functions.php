@@ -297,7 +297,7 @@ if (empty ($test)) return ;
 //$user_id = get_current_user_id(); 
 //if ($user_id == 0) return ;  // bail if no user ID
 	$roles = get_usermeta( $user_id, 'wp_capabilities',false )  ;
-		foreach ($roles as $role=>$value) {
+	foreach ((array)$roles as $role=>$value) {
 				foreach ($test as $check=>$group){
 				if ($role ==  $check ) {
 					if ($group != 'no-group') update_user_meta( $user_id, 'private_group', $group); 
@@ -327,5 +327,3 @@ if ($user_id == 0) return ;  // bail if no user ID
 				}		
 		}
 }
-
-?>
