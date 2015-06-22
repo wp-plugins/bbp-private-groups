@@ -3,7 +3,7 @@ Contributors: Robin Wilson
 Tags: forum, bbpress, bbp, private, groups
 Requires at least: 3.0.1
 Donate link: http://www.rewweb.co.uk/donate
-Tested up to: 4.2.1
+Tested up to: 4.2.2
 Stable tag: 3.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -153,6 +153,8 @@ A shortcode to list users either across all groups or per group
 
 
 == Changelog ==
+
+3.0.3 fix issue with 404's showing in functions file
 
 3.0.2 fix foreach error in functions line 300
 

@@ -121,7 +121,9 @@ function private_group_enforce_permissions() {
         if (!is_user_logged_in()) {
 			if($rpg_settingsf['redirect_page2']) {
 				$link=$rpg_settingsf['redirect_page2'] ;
-				header( "Location: $link" );
+				//header( "Location: $link" );
+				wp_redirect($link);
+				exit;
 			}
 			else {		
 				auth_redirect();
@@ -130,7 +132,9 @@ function private_group_enforce_permissions() {
 		else {
 			if($rpg_settingsf['redirect_page1']) {
 				$link=$rpg_settingsf['redirect_page1'] ;
-				header( "Location: $link" );
+				//header( "Location: $link" );
+				wp_redirect($link);
+				exit;
 			}	
 			else {
 				bbp_set_404();
