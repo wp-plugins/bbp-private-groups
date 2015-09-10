@@ -11,7 +11,7 @@ add_action('wp_login', 'pg_assign_role_on_login', 10, 2);
 
 
 add_action('wp_login', 'pg_assign_role_on_login', 10, 2);
-//removed as you can't filter topics and replies ans they 'return' before the filter
+//removed as you can't filter topics and replies as they 'return' before the filter
 //add_filter('bbp_get_author_link', 'pg_get_author_link' ) ;
 
 /*
@@ -63,7 +63,7 @@ function private_groups_get_permitted_post_ids($post_query) {
 		//by calling the function that checks if the user can view this forum, and hence this post
         if (private_groups_can_user_view_post_id($forum_id)) {
 		
-            //User can view this post - add it to the allowed array
+			//User can view this post - add it to the allowed array
             array_push($allowed_posts, $post_id);
         }
 

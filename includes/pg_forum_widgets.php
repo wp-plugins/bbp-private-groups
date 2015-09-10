@@ -107,6 +107,15 @@ class pg_Forums_Widget extends WP_Widget {
         if (!empty($settings['title'])) {
             echo $args['before_title'] . $settings['title'] . $args['after_title'];
         }
+		
+		//if no allowed posts for this user display message and bail
+		if ( empty( $allowed_posts )) {
+			echo '<ul><li>' ;
+			_e('No Forums', 'bbp-private-groups') ;
+			echo '</li></ul>' ;
+			return ;
+		}
+		
         ?>
 
         <ul>
@@ -162,13 +171,13 @@ class pg_Forums_Widget extends WP_Widget {
         ?>
 
         <p>
-            <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'bbpress'); ?>
+            <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'bbp-private-groups'); ?>
                 <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($settings['title']); ?>" />
             </label>
         </p>
 
         <p>
-            <label for="<?php echo $this->get_field_id('parent_forum'); ?>"><?php _e('Parent Forum ID:', 'bbpress'); ?>
+            <label for="<?php echo $this->get_field_id('parent_forum'); ?>"><?php _e('Parent Forum ID:', 'bbp-private-groups'); ?>
                 <input class="widefat" id="<?php echo $this->get_field_id('parent_forum'); ?>" name="<?php echo $this->get_field_name('parent_forum'); ?>" type="text" value="<?php echo esc_attr($settings['parent_forum']); ?>" />
             </label>
 
@@ -190,7 +199,7 @@ class pg_Forums_Widget extends WP_Widget {
      */
     public function parse_settings($instance = array()) {
         return bbp_parse_args($instance, array(
-            'title' => __('Forums', 'bbpress'),
+            'title' => __('Forums', 'bbp-private-groups'),
             'parent_forum' => 0
                 ), 'forum_widget_settings');
     }
@@ -331,6 +340,13 @@ class pg_Topics_Widget extends WP_Widget {
         if (!empty($settings['title'])) {
             echo $args['before_title'] . $settings['title'] . $args['after_title'];
         }
+		//if no allowed posts for this user display message and bail
+		if ( empty( $allowed_posts )) {
+			echo '<ul><li>' ;
+			_e('No Topics', 'bbp-private-groups') ;
+			echo '</li></ul>' ;
+			return ;
+		}
         ?>
 
         <ul>
@@ -353,7 +369,7 @@ class pg_Topics_Widget extends WP_Widget {
 
                     <?php if (!empty($author_link)) : ?>
 
-                        <?php printf(_x('by %1$s', 'widgets', 'bbpress'), '<span class="topic-author">' . $author_link . '</span>'); ?>
+                        <?php printf(_x('by %1$s', 'widgets', 'bbp-private-groups'), '<span class="topic-author">' . $author_link . '</span>'); ?>
 
                     <?php endif; ?>
 
@@ -416,27 +432,27 @@ class pg_Topics_Widget extends WP_Widget {
         $settings = $this->parse_settings($instance);
         ?>
 
-        <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'bbpress'); ?> <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($settings['title']); ?>" /></label></p>
-        <p><label for="<?php echo $this->get_field_id('max_shown'); ?>"><?php _e('Maximum topics to show:', 'bbpress'); ?> <input class="widefat" id="<?php echo $this->get_field_id('max_shown'); ?>" name="<?php echo $this->get_field_name('max_shown'); ?>" type="text" value="<?php echo esc_attr($settings['max_shown']); ?>" /></label></p>
+        <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'bbp-private-groups'); ?> <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($settings['title']); ?>" /></label></p>
+        <p><label for="<?php echo $this->get_field_id('max_shown'); ?>"><?php _e('Maximum topics to show:', 'bbp-private-groups'); ?> <input class="widefat" id="<?php echo $this->get_field_id('max_shown'); ?>" name="<?php echo $this->get_field_name('max_shown'); ?>" type="text" value="<?php echo esc_attr($settings['max_shown']); ?>" /></label></p>
 
         <p>
-            <label for="<?php echo $this->get_field_id('parent_forum'); ?>"><?php _e('Parent Forum ID:', 'bbpress'); ?>
+            <label for="<?php echo $this->get_field_id('parent_forum'); ?>"><?php _e('Parent Forum ID:', 'bbp-private-groups'); ?>
                 <input class="widefat" id="<?php echo $this->get_field_id('parent_forum'); ?>" name="<?php echo $this->get_field_name('parent_forum'); ?>" type="text" value="<?php echo esc_attr($settings['parent_forum']); ?>" />
             </label>
 
             <br />
 
-            <small><?php _e('"0" to show only root - "any" to show all', 'bbpress'); ?></small>
+            <small><?php _e('"0" to show only root - "any" to show all', 'bbp-private-groups'); ?></small>
         </p>
 
-        <p><label for="<?php echo $this->get_field_id('show_date'); ?>"><?php _e('Show post date:', 'bbpress'); ?> <input type="checkbox" id="<?php echo $this->get_field_id('show_date'); ?>" name="<?php echo $this->get_field_name('show_date'); ?>" <?php checked( true, $settings['show_date'] ); ?> value="1" /></label></p>
-        <p><label for="<?php echo $this->get_field_id('show_user'); ?>"><?php _e('Show topic author:', 'bbpress'); ?> <input type="checkbox" id="<?php echo $this->get_field_id('show_user'); ?>" name="<?php echo $this->get_field_name('show_user'); ?>" <?php checked( true, $settings['show_user'] ); ?> value="1" /></label></p>
+        <p><label for="<?php echo $this->get_field_id('show_date'); ?>"><?php _e('Show post date:', 'bbp-private-groups'); ?> <input type="checkbox" id="<?php echo $this->get_field_id('show_date'); ?>" name="<?php echo $this->get_field_name('show_date'); ?>" <?php checked( true, $settings['show_date'] ); ?> value="1" /></label></p>
+        <p><label for="<?php echo $this->get_field_id('show_user'); ?>"><?php _e('Show topic author:', 'bbp-private-groups'); ?> <input type="checkbox" id="<?php echo $this->get_field_id('show_user'); ?>" name="<?php echo $this->get_field_name('show_user'); ?>" <?php checked( true, $settings['show_user'] ); ?> value="1" /></label></p>
         <p>
-            <label for="<?php echo $this->get_field_id('order_by'); ?>"><?php _e('Order By:', 'bbpress'); ?></label>
+            <label for="<?php echo $this->get_field_id('order_by'); ?>"><?php _e('Order By:', 'bbp-private-groups'); ?></label>
             <select name="<?php echo $this->get_field_name('order_by'); ?>" id="<?php echo $this->get_field_name('order_by'); ?>">
-                <option <?php selected($settings['order_by'], 'newness'); ?> value="newness"><?php _e('Newest Topics', 'bbpress'); ?></option>
-                <option <?php selected($settings['order_by'], 'popular'); ?> value="popular"><?php _e('Popular Topics', 'bbpress'); ?></option>
-                <option <?php selected($settings['order_by'], 'freshness'); ?> value="freshness"><?php _e('Topics With Recent Replies', 'bbpress'); ?></option>
+                <option <?php selected($settings['order_by'], 'newness'); ?> value="newness"><?php _e('Newest Topics', 'bbp-private-groups'); ?></option>
+                <option <?php selected($settings['order_by'], 'popular'); ?> value="popular"><?php _e('Popular Topics', 'bbp-private-groups'); ?></option>
+                <option <?php selected($settings['order_by'], 'freshness'); ?> value="freshness"><?php _e('Topics With Recent Replies', 'bbp-private-groups'); ?></option>
             </select>
         </p>
 
@@ -453,7 +469,7 @@ class pg_Topics_Widget extends WP_Widget {
      */
     public function parse_settings($instance = array()) {
         return bbp_parse_args($instance, array(
-            'title' => __('Recent Topics', 'bbpress'),
+            'title' => __('Recent Topics', 'bbp-private-groups'),
             'max_shown' => 5,
             'show_date' => false,
             'show_user' => false,
@@ -560,6 +576,14 @@ class pg_Replies_Widget extends WP_Widget {
         if (!empty($settings['title'])) {
             echo $args['before_title'] . $settings['title'] . $args['after_title'];
         }
+		
+		//if no allowed posts for this user display message and bail
+		if ( empty( $allowed_posts )) {
+			echo '<ul><li>' ;
+			_e('No Replies', 'bbp-private-groups') ;
+			echo '</li></ul>' ;
+			return ;
+		}
         ?>
 
         <ul>
@@ -584,25 +608,25 @@ class pg_Replies_Widget extends WP_Widget {
                     if (( 'on' == $settings['show_date'] ) && !empty($author_link)) :
 
                         // translators: 1: reply author, 2: reply link, 3: reply timestamp
-                        printf(_x('%1$s on %2$s %3$s', 'widgets', 'bbpress'), $author_link, $reply_link, '<div>' . bbp_get_time_since(get_the_time('U')) . '</div>');
+                        printf(_x('%1$s on %2$s %3$s', 'widgets', 'bbp-private-groups'), $author_link, $reply_link, '<div>' . bbp_get_time_since(get_the_time('U')) . '</div>');
 
                     // Reply link and timestamp
                     elseif ('on' == $settings['show_date']) :
 
                         // translators: 1: reply link, 2: reply timestamp
-                        printf(_x('%1$s %2$s', 'widgets', 'bbpress'), $reply_link, '<div>' . bbp_get_time_since(get_the_time('U')) . '</div>');
+                        printf(_x('%1$s %2$s', 'widgets', 'bbp-private-groups'), $reply_link, '<div>' . bbp_get_time_since(get_the_time('U')) . '</div>');
 
                     // Reply author and title
                     elseif (!empty($author_link)) :
 
                         // translators: 1: reply author, 2: reply link
-                        printf(_x('%1$s on %2$s', 'widgets', 'bbpress'), $author_link, $reply_link);
+                        printf(_x('%1$s on %2$s', 'widgets', 'bbp-private-groups'), $author_link, $reply_link);
 
                     // Only the reply title
                     else :
 
                         // translators: 1: reply link
-                        printf(_x('%1$s', 'widgets', 'bbpress'), $reply_link);
+                        printf(_x('%1$s', 'widgets', 'bbp-private-groups'), $reply_link);
 
                     endif;
                     ?>
@@ -652,10 +676,10 @@ class pg_Replies_Widget extends WP_Widget {
         $settings = $this->parse_settings($instance);
         ?>
 
-        <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'bbpress'); ?> <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($settings['title']); ?>" /></label></p>
-        <p><label for="<?php echo $this->get_field_id('max_shown'); ?>"><?php _e('Maximum replies to show:', 'bbpress'); ?> <input class="widefat" id="<?php echo $this->get_field_id('max_shown'); ?>" name="<?php echo $this->get_field_name('max_shown'); ?>" type="text" value="<?php echo esc_attr($settings['max_shown']); ?>" /></label></p>
-        <p><label for="<?php echo $this->get_field_id('show_date'); ?>"><?php _e('Show post date:', 'bbpress'); ?> <input type="checkbox" id="<?php echo $this->get_field_id('show_date'); ?>" name="<?php echo $this->get_field_name('show_date'); ?>" <?php checked( true, $settings['show_date'] ); ?> value="1" /></label></p>
-        <p><label for="<?php echo $this->get_field_id('show_user'); ?>"><?php _e('Show reply author:', 'bbpress'); ?> <input type="checkbox" id="<?php echo $this->get_field_id('show_user'); ?>" name="<?php echo $this->get_field_name('show_user'); ?>" <?php checked( true, $settings['show_user'] ); ?> value="1" /></label></p>
+        <p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'bbp-private-groups'); ?> <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($settings['title']); ?>" /></label></p>
+        <p><label for="<?php echo $this->get_field_id('max_shown'); ?>"><?php _e('Maximum replies to show:', 'bbp-private-groups'); ?> <input class="widefat" id="<?php echo $this->get_field_id('max_shown'); ?>" name="<?php echo $this->get_field_name('max_shown'); ?>" type="text" value="<?php echo esc_attr($settings['max_shown']); ?>" /></label></p>
+        <p><label for="<?php echo $this->get_field_id('show_date'); ?>"><?php _e('Show post date:', 'bbp-private-groups'); ?> <input type="checkbox" id="<?php echo $this->get_field_id('show_date'); ?>" name="<?php echo $this->get_field_name('show_date'); ?>" <?php checked( true, $settings['show_date'] ); ?> value="1" /></label></p>
+        <p><label for="<?php echo $this->get_field_id('show_user'); ?>"><?php _e('Show reply author:', 'bbp-private-groups'); ?> <input type="checkbox" id="<?php echo $this->get_field_id('show_user'); ?>" name="<?php echo $this->get_field_name('show_user'); ?>" <?php checked( true, $settings['show_user'] ); ?> value="1" /></label></p>
 
         <?php
     }
@@ -697,10 +721,10 @@ class pg_Activity_Widget extends WP_Widget {
 	public function __construct() {
 		$widget_ops = apply_filters( 'pg_topics_widget_options', array(
 			'classname'   => 'widget_display_topics',
-			'description' => __( 'A list of latest activity, sorted by popularity or freshness with latest author.', 'bbpress' )
+			'description' => __( 'A list of latest activity, sorted by popularity or freshness with latest author.', 'bbp-private-groups' )
 		) );
 
-		parent::__construct( false, __( '(PG) Latest Activity', 'bbpress' ), $widget_ops );
+		parent::__construct( false, __( '(PG) Latest Activity', 'bbp-private-groups' ), $widget_ops );
 	}
 
 	/**
@@ -791,11 +815,12 @@ class pg_Activity_Widget extends WP_Widget {
         //set posts per page to 200 to ensure we get a full list
 		$topics_query['posts_per_page'] =200;
 		$allowed_posts = private_groups_get_permitted_post_ids(new WP_Query($topics_query));
-        // The default forum query with allowed forum ids array added
+	
+		// The default forum query with allowed forum ids array added
 		$topics_query['post__in'] = $allowed_posts;
 		//reset the max to be shown
 		$topics_query['posts_per_page'] =(int) $settings['max_shown'] ;
-
+		
 		// Note: private and hidden forums will be excluded via the
 		// bbp_pre_get_posts_normalize_forum_visibility action and function.
 		$widget_query = new WP_Query( $topics_query );
@@ -803,13 +828,23 @@ class pg_Activity_Widget extends WP_Widget {
 		if ( ! $widget_query->have_posts() ) {
 			return;
 		}
+						
 
 		echo $args['before_widget'];
 
 		if ( !empty( $settings['title'] ) ) {
 			echo $args['before_title'] . $settings['title'] . $args['after_title'];
-		} ?>
+		} 
 
+			//if no allowed posts for this user display message and bail
+		if ( empty( $allowed_posts )) {
+			echo '<ul><li>' ;
+			_e('No activity', 'bbp-private-groups') ;
+			echo '</li></ul>' ;
+			return ;
+		}
+		
+		?>
 		<ul>
 
 			<?php while ( $widget_query->have_posts() ) :
@@ -848,8 +883,8 @@ class pg_Activity_Widget extends WP_Widget {
 						<div>
 						<?php 
 						
-						if (empty($reply)) printf( _x( 'topic by %1$s', 'widgets', 'bbpress' ), '<span class="topic-author">' . $author_link . '</span>' ); 
-						else printf( _x( 'reply by %1$s', 'widgets', 'bbpress' ), '<span class="topic-author">' . $author_link . '</span>' ); ?>
+						if (empty($reply)) printf( _x( 'topic by %1$s', 'widgets', 'bbp-private-groups' ), '<span class="topic-author">' . $author_link . '</span>' ); 
+						else printf( _x( 'reply by %1$s', 'widgets', 'bbp-private-groups' ), '<span class="topic-author">' . $author_link . '</span>' ); ?>
 						</div>
 					<?php endif; ?>
 					
@@ -860,7 +895,7 @@ class pg_Activity_Widget extends WP_Widget {
 						if ( ! empty( $settings['shorten_freshness'] ) ) $output = preg_replace( '/, .*[^ago]/', ' ', $output ); ?>
 						<div><?php 
 						echo $output ;
-						//bbp_topic_last_active_time( $topic_id ); ?></div>
+						?></div>
 					
 					<?php endif; ?>
 					
@@ -933,31 +968,31 @@ class pg_Activity_Widget extends WP_Widget {
 		// Get widget settings
 		$settings = $this->parse_settings( $instance ); ?>
 
-		<p><label for="<?php echo $this->get_field_id( 'title'     ); ?>"><?php _e( 'Title:',                  'bbpress' ); ?> <input class="widefat" id="<?php echo $this->get_field_id( 'title'     ); ?>" name="<?php echo $this->get_field_name( 'title'     ); ?>" type="text" value="<?php echo esc_attr( $settings['title']     ); ?>" /></label></p>
-		<p><label for="<?php echo $this->get_field_id( 'max_shown' ); ?>"><?php _e( 'Maximum topics to show:', 'bbpress' ); ?> <input class="widefat" id="<?php echo $this->get_field_id( 'max_shown' ); ?>" name="<?php echo $this->get_field_name( 'max_shown' ); ?>" type="text" value="<?php echo esc_attr( $settings['max_shown'] ); ?>" /></label></p>
+		<p><label for="<?php echo $this->get_field_id( 'title'     ); ?>"><?php _e( 'Title:',                  'bbp-private-groups' ); ?> <input class="widefat" id="<?php echo $this->get_field_id( 'title'     ); ?>" name="<?php echo $this->get_field_name( 'title'     ); ?>" type="text" value="<?php echo esc_attr( $settings['title']     ); ?>" /></label></p>
+		<p><label for="<?php echo $this->get_field_id( 'max_shown' ); ?>"><?php _e( 'Maximum topics to show:', 'bbp-private-groups' ); ?> <input class="widefat" id="<?php echo $this->get_field_id( 'max_shown' ); ?>" name="<?php echo $this->get_field_name( 'max_shown' ); ?>" type="text" value="<?php echo esc_attr( $settings['max_shown'] ); ?>" /></label></p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'parent_forum' ); ?>"><?php _e( 'Parent Forum ID:', 'bbpress' ); ?>
+			<label for="<?php echo $this->get_field_id( 'parent_forum' ); ?>"><?php _e( 'Parent Forum ID:', 'bbp-private-groups' ); ?>
 				<input class="widefat" id="<?php echo $this->get_field_id( 'parent_forum' ); ?>" name="<?php echo $this->get_field_name( 'parent_forum' ); ?>" type="text" value="<?php echo esc_attr( $settings['parent_forum'] ); ?>" />
 			</label>
 
 			<br />
 
-			<small><?php _e( '"0" to show only root - "any" to show all', 'bbpress' ); ?></small>
+			<small><?php _e( '"0" to show only root - "any" to show all', 'bbp-private-groups' ); ?></small>
 		</p>
 
-		<p><label for="<?php echo $this->get_field_id( 'show_freshness' ); ?>"><?php _e( 'Show Freshness:',    'bbpress' ); ?> <input type="checkbox" id="<?php echo $this->get_field_id( 'show_freshness' ); ?>" name="<?php echo $this->get_field_name( 'show_freshness' ); ?>" <?php checked( true, $settings['show_freshness'] ); ?> value="1" /></label></p>
-		<p><label for="<?php echo $this->get_field_id( 'shorten_freshness' ); ?>"><?php _e( 'Shorten freshness:',    'bbpress' ); ?> <input type="checkbox" id="<?php echo $this->get_field_id( 'shorten_freshness' ); ?>" name="<?php echo $this->get_field_name( 'shorten_freshness' ); ?>" <?php checked( true, $settings['shorten_freshness'] ); ?> value="1" /></label></p>
-		<p><label for="<?php echo $this->get_field_id( 'show_user' ); ?>"><?php _e( 'Show topic author:', 'bbpress' ); ?> <input type="checkbox" id="<?php echo $this->get_field_id( 'show_user' ); ?>" name="<?php echo $this->get_field_name( 'show_user' ); ?>" <?php checked( true, $settings['show_user'] ); ?> value="1" /></label></p>
-		<p><label for="<?php echo $this->get_field_id( 'hide_avatar' ); ?>"><?php _e( 'Hide Avatar',    'bbpress' ); ?> <input type="checkbox" id="<?php echo $this->get_field_id( 'hide_avatar' ); ?>" name="<?php echo $this->get_field_name( 'hide_avatar' ); ?>" <?php checked( true, $settings['hide_avatar'] ); ?> value="1" /></label></p>
-		<p><label for="<?php echo $this->get_field_id( 'show_forum' ); ?>"><?php _e( 'Show Forum:',    'bbpress' ); ?> <input type="checkbox" id="<?php echo $this->get_field_id( 'show_forum' ); ?>" name="<?php echo $this->get_field_name( 'show_forum' ); ?>" <?php checked( true, $settings['show_forum'] ); ?> value="1" /></label></p>
+		<p><label for="<?php echo $this->get_field_id( 'show_freshness' ); ?>"><?php _e( 'Show Freshness:',    'bbp-private-groups' ); ?> <input type="checkbox" id="<?php echo $this->get_field_id( 'show_freshness' ); ?>" name="<?php echo $this->get_field_name( 'show_freshness' ); ?>" <?php checked( true, $settings['show_freshness'] ); ?> value="1" /></label></p>
+		<p><label for="<?php echo $this->get_field_id( 'shorten_freshness' ); ?>"><?php _e( 'Shorten freshness:',    'bbp-private-groups' ); ?> <input type="checkbox" id="<?php echo $this->get_field_id( 'shorten_freshness' ); ?>" name="<?php echo $this->get_field_name( 'shorten_freshness' ); ?>" <?php checked( true, $settings['shorten_freshness'] ); ?> value="1" /></label></p>
+		<p><label for="<?php echo $this->get_field_id( 'show_user' ); ?>"><?php _e( 'Show topic author:', 'bbp-private-groups' ); ?> <input type="checkbox" id="<?php echo $this->get_field_id( 'show_user' ); ?>" name="<?php echo $this->get_field_name( 'show_user' ); ?>" <?php checked( true, $settings['show_user'] ); ?> value="1" /></label></p>
+		<p><label for="<?php echo $this->get_field_id( 'hide_avatar' ); ?>"><?php _e( 'Hide Avatar',    'bbp-private-groups' ); ?> <input type="checkbox" id="<?php echo $this->get_field_id( 'hide_avatar' ); ?>" name="<?php echo $this->get_field_name( 'hide_avatar' ); ?>" <?php checked( true, $settings['hide_avatar'] ); ?> value="1" /></label></p>
+		<p><label for="<?php echo $this->get_field_id( 'show_forum' ); ?>"><?php _e( 'Show Forum:',    'bbp-private-groups' ); ?> <input type="checkbox" id="<?php echo $this->get_field_id( 'show_forum' ); ?>" name="<?php echo $this->get_field_name( 'show_forum' ); ?>" <?php checked( true, $settings['show_forum'] ); ?> value="1" /></label></p>
 		
 		<p>
-			<label for="<?php echo $this->get_field_id( 'order_by' ); ?>"><?php _e( 'Order By:',        'bbpress' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'order_by' ); ?>"><?php _e( 'Order By:',        'bbp-private-groups' ); ?></label>
 			<select name="<?php echo $this->get_field_name( 'order_by' ); ?>" id="<?php echo $this->get_field_name( 'order_by' ); ?>">
-				<option <?php selected( $settings['order_by'], 'freshness' ); ?> value="freshness"><?php _e( 'Topics With Recent Replies', 'bbpress' ); ?></option>
-				<option <?php selected( $settings['order_by'], 'newness' );   ?> value="newness"><?php _e( 'Newest Topics',                'bbpress' ); ?></option>
-				<option <?php selected( $settings['order_by'], 'popular' );   ?> value="popular"><?php _e( 'Popular Topics',               'bbpress' ); ?></option>
+				<option <?php selected( $settings['order_by'], 'freshness' ); ?> value="freshness"><?php _e( 'Topics With Recent Replies', 'bbp-private-groups' ); ?></option>
+				<option <?php selected( $settings['order_by'], 'newness' );   ?> value="newness"><?php _e( 'Newest Topics',                'bbp-private-groups' ); ?></option>
+				<option <?php selected( $settings['order_by'], 'popular' );   ?> value="popular"><?php _e( 'Popular Topics',               'bbp-private-groups' ); ?></option>
 				
 			</select>
 		</p>
@@ -975,7 +1010,7 @@ class pg_Activity_Widget extends WP_Widget {
 	 */
 	public function parse_settings( $instance = array() ) {
 		return bbp_parse_args( $instance, array(
-			'title'        => __( 'Latest Activity', 'bbpress' ),
+			'title'        => __( 'Latest Activity', 'bbp-private-groups' ),
 			'max_shown'    => 5,
 			'show_date'    => false,
 			'show_user'    => false,

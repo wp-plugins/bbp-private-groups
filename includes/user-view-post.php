@@ -45,7 +45,7 @@ function private_groups_can_user_view_post( $user_id, $forum_id = '' ) {
 					
 			
 			/*Check if user is keymaster*/
-			if ( bbp_is_user_keymaster()) $can_view = true; 
+			if ( bbp_is_user_keymaster($user_id)) $can_view = true; 
 			//now we'll check if the user is a moderator. 
 			else {
 			$role = bbp_get_user_role( $user_id );
