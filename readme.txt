@@ -156,7 +156,7 @@ A shortcode to list users either across all groups or per group
 
 3.0.4 fix issue with widgets showing activity' if post__in no allowed_posts array is blank
 <br>
-Internationalisation added for pg_Forum_Widgets.php
+Internationalisation added for pg_forum_widgets.php
 <br>
 $user_id added to is_keymaster($user_id) line 48 in user-view-post.php to allow for compatibility with other plugins
 <br>

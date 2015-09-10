@@ -1,18 +1,19 @@
-# Copyright (C) 2014 bbP private groups
+# Copyright (C) 2015 bbP private groups
 # This file is distributed under the same license as the bbP private groups package.
 msgid ""
 msgstr ""
-"Project-Id-Version: bbP private groups 2.5\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/tag/bbp-private-groups\n"
-"POT-Creation-Date: 2014-12-08 17:33:23+00:00\n"
+"Project-Id-Version: bbP private groups 3.0.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/bbp-private-"
+"groups\n"
+"POT-Creation-Date: 2015-09-10 17:33:56+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: includes/functions.php:238
+#: includes/functions.php:248 includes/pg_forum_widgets.php:346
 msgid "No Topics"
 msgstr ""
 
@@ -60,8 +61,8 @@ msgstr ""
 
 #: includes/help.php:40
 msgid ""
-"TO SET : Set visibility to public below and set forums to public in each "
-"forum’s attributes (dashboard>forums)."
+"TO SET : Set visibility to public and set forums to public in each forum’s "
+"attributes (dashboard>forums)."
 msgstr ""
 
 #: includes/help.php:43
@@ -88,8 +89,8 @@ msgstr ""
 
 #: includes/help.php:53
 msgid ""
-"TO SET : Set visibility to public below and set any private forums to "
-"private in that forum’s attributes (dashboard>forums)."
+"TO SET : Set visibility to public and set any private forums to private in "
+"that forum’s attributes (dashboard>forums)."
 msgstr ""
 
 #: includes/help.php:62 includes/role-new.php:82
@@ -158,126 +159,180 @@ msgid ""
 "Groups to set</b>"
 msgstr ""
 
-#: includes/meta-box.php:59 includes/role_assignment.php:44
-#: includes/role_assignment.php:55 includes/settings.php:233
-#: includes/settings.php:287 includes/user-profile.php:34
-#: includes/user_management.php:63 includes/user_management.php:84
-#: includes/user_management.php:145 includes/user_management.php:153
+#: includes/meta-box.php:59 includes/role_assignment.php:72
+#: includes/settings.php:248 includes/settings.php:302
+#: includes/user-profile.php:34 includes/user_management.php:63
+#: includes/user_management.php:84 includes/user_management.php:145
+#: includes/user_management.php:153
 msgid "Group"
 msgstr ""
 
-#: includes/pg_forum_widgets.php:35
+#: includes/pg_forum_widgets.php:37
 msgid "A list of forums with an option to set the parent."
 msgstr ""
 
-#: includes/pg_forum_widgets.php:38
-msgid "(Private Groups) Forums List"
+#: includes/pg_forum_widgets.php:40 includes/widget_warning.php:28
+msgid "(PG) Forums List"
 msgstr ""
 
-#: includes/pg_forum_widgets.php:163 includes/pg_forum_widgets.php:415
-#: includes/pg_forum_widgets.php:651
+#: includes/pg_forum_widgets.php:114
+msgid "No Forums"
+msgstr ""
+
+#: includes/pg_forum_widgets.php:174 includes/pg_forum_widgets.php:435
+#: includes/pg_forum_widgets.php:679 includes/pg_forum_widgets.php:971
 msgid "Title:"
 msgstr ""
 
-#: includes/pg_forum_widgets.php:169 includes/pg_forum_widgets.php:419
+#: includes/pg_forum_widgets.php:180 includes/pg_forum_widgets.php:439
+#: includes/pg_forum_widgets.php:975
 msgid "Parent Forum ID:"
 msgstr ""
 
-#: includes/pg_forum_widgets.php:175 includes/pg_forum_widgets.php:425
+#: includes/pg_forum_widgets.php:186 includes/pg_forum_widgets.php:445
+#: includes/pg_forum_widgets.php:981
 msgid "\"0\" to show only root - \"any\" to show all"
 msgstr ""
 
-#: includes/pg_forum_widgets.php:191
+#: includes/pg_forum_widgets.php:202
 msgid "Forums"
 msgstr ""
 
-#: includes/pg_forum_widgets.php:222
+#: includes/pg_forum_widgets.php:233
 msgid "A list of recent topics, sorted by popularity or freshness."
 msgstr ""
 
-#: includes/pg_forum_widgets.php:225
-msgid "(Private Groups) Recent Topics"
+#: includes/pg_forum_widgets.php:236 includes/widget_warning.php:29
+msgid "(PG) Recent Topics"
 msgstr ""
 
-#: includes/pg_forum_widgets.php:352
+#: includes/pg_forum_widgets.php:372
 msgctxt "widgets"
 msgid "by %1$s"
 msgstr ""
 
-#: includes/pg_forum_widgets.php:416
+#: includes/pg_forum_widgets.php:436 includes/pg_forum_widgets.php:972
 msgid "Maximum topics to show:"
 msgstr ""
 
-#: includes/pg_forum_widgets.php:428 includes/pg_forum_widgets.php:653
+#: includes/pg_forum_widgets.php:448 includes/pg_forum_widgets.php:681
 msgid "Show post date:"
 msgstr ""
 
-#: includes/pg_forum_widgets.php:429
+#: includes/pg_forum_widgets.php:449 includes/pg_forum_widgets.php:986
 msgid "Show topic author:"
 msgstr ""
 
-#: includes/pg_forum_widgets.php:431
+#: includes/pg_forum_widgets.php:451 includes/pg_forum_widgets.php:991
 msgid "Order By:"
 msgstr ""
 
-#: includes/pg_forum_widgets.php:433
+#: includes/pg_forum_widgets.php:453 includes/pg_forum_widgets.php:994
 msgid "Newest Topics"
 msgstr ""
 
-#: includes/pg_forum_widgets.php:434
+#: includes/pg_forum_widgets.php:454 includes/pg_forum_widgets.php:995
 msgid "Popular Topics"
 msgstr ""
 
-#: includes/pg_forum_widgets.php:435
+#: includes/pg_forum_widgets.php:455 includes/pg_forum_widgets.php:993
 msgid "Topics With Recent Replies"
 msgstr ""
 
-#: includes/pg_forum_widgets.php:452
+#: includes/pg_forum_widgets.php:472
 msgid "Recent Topics"
 msgstr ""
 
-#: includes/pg_forum_widgets.php:485
+#: includes/pg_forum_widgets.php:505
 msgid "A list of the most recent replies."
 msgstr ""
 
-#: includes/pg_forum_widgets.php:488
-msgid "(Private Groups) Recent Replies"
+#: includes/pg_forum_widgets.php:508 includes/widget_warning.php:30
+msgid "(PG) Recent Replies"
+msgstr ""
+
+#: includes/pg_forum_widgets.php:583
+msgid "No Replies"
 msgstr ""
 
 #. translators: 1: reply author, 2: reply link, 3: reply timestamp
-#: includes/pg_forum_widgets.php:583
+#: includes/pg_forum_widgets.php:611
 msgctxt "widgets"
 msgid "%1$s on %2$s %3$s"
 msgstr ""
 
 #. translators: 1: reply link, 2: reply timestamp
-#: includes/pg_forum_widgets.php:589
+#: includes/pg_forum_widgets.php:617
 msgctxt "widgets"
 msgid "%1$s %2$s"
 msgstr ""
 
 #. translators: 1: reply author, 2: reply link
-#: includes/pg_forum_widgets.php:595
+#: includes/pg_forum_widgets.php:623
 msgctxt "widgets"
 msgid "%1$s on %2$s"
 msgstr ""
 
 #. translators: 1: reply link
-#: includes/pg_forum_widgets.php:601
+#: includes/pg_forum_widgets.php:629
 msgctxt "widgets"
 msgid "%1$s"
 msgstr ""
 
-#: includes/pg_forum_widgets.php:652
+#: includes/pg_forum_widgets.php:680
 msgid "Maximum replies to show:"
 msgstr ""
 
-#: includes/pg_forum_widgets.php:654
+#: includes/pg_forum_widgets.php:682
 msgid "Show reply author:"
 msgstr ""
 
-#: includes/pg_forum_widgets.php:669
+#: includes/pg_forum_widgets.php:697
 msgid "Recent Replies"
+msgstr ""
+
+#: includes/pg_forum_widgets.php:724
+msgid ""
+"A list of latest activity, sorted by popularity or freshness with latest "
+"author."
+msgstr ""
+
+#: includes/pg_forum_widgets.php:727
+msgid "(PG) Latest Activity"
+msgstr ""
+
+#: includes/pg_forum_widgets.php:842
+msgid "No activity"
+msgstr ""
+
+#: includes/pg_forum_widgets.php:886
+msgctxt "widgets"
+msgid "topic by %1$s"
+msgstr ""
+
+#: includes/pg_forum_widgets.php:887
+msgctxt "widgets"
+msgid "reply by %1$s"
+msgstr ""
+
+#: includes/pg_forum_widgets.php:984
+msgid "Show Freshness:"
+msgstr ""
+
+#: includes/pg_forum_widgets.php:985
+msgid "Shorten freshness:"
+msgstr ""
+
+#: includes/pg_forum_widgets.php:987
+msgid "Hide Avatar"
+msgstr ""
+
+#: includes/pg_forum_widgets.php:988
+msgid "Show Forum:"
+msgstr ""
+
+#: includes/pg_forum_widgets.php:1013
+msgid "Latest Activity"
 msgstr ""
 
 #: includes/role-new.php:44
@@ -342,14 +397,30 @@ msgid ""
 msgstr ""
 
 #: includes/role_assignment.php:26
-msgid "This section only applies to wordpress roles !"
+msgid ""
+"This section only applies to wordpress or custom or membership roles, NOT "
+"bbpress roles !"
 msgstr ""
 
-#: includes/role_assignment.php:48
+#: includes/role_assignment.php:35
+msgid ""
+"Additionally you can optionally select to assign roles on login for users "
+"who do not have a role assigned. This is useful where your membership plugin "
+"does not use Wordpress registration, so the above does not work!. You can "
+"assign a <i> different </i> role to individual users manually, but if you "
+"change an individual user to have no groups, then the group for that role "
+"will be assigned on next login as the plugin sees this as blank!"
+msgstr ""
+
+#: includes/role_assignment.php:38
+msgid "Add group on login"
+msgstr ""
+
+#: includes/role_assignment.php:65
 msgid "no-Group"
 msgstr ""
 
-#: includes/role_assignment.php:71
+#: includes/role_assignment.php:88
 msgid "Save Changes"
 msgstr ""
 
@@ -389,17 +460,21 @@ msgstr ""
 msgid "Assign groups to roles"
 msgstr ""
 
-#: includes/settings.php:56
+#: includes/settings.php:45
+msgid "Widget Warning !"
+msgstr ""
+
+#: includes/settings.php:58
 msgid ""
 "If you find this plugin useful, please consider donating just a couple of "
 "dollars to help me develop and maintain it. You support will be appreciated"
 msgstr ""
 
-#: includes/settings.php:75
+#: includes/settings.php:77
 msgid "Forum Visibility"
 msgstr ""
 
-#: includes/settings.php:76
+#: includes/settings.php:78
 msgid ""
 "By default only users with access to a forum will see the forum titles in "
 "the indexes.  However you may want everyone to see that a forum exists (ie "
@@ -409,21 +484,21 @@ msgid ""
 "dashboard>forums settings"
 msgstr ""
 
-#: includes/settings.php:76
+#: includes/settings.php:78
 msgid "See help tab for more information"
 msgstr ""
 
-#: includes/settings.php:81 includes/settings.php:119
-#: includes/settings.php:163 includes/settings.php:176
-#: includes/settings.php:189
+#: includes/settings.php:83 includes/settings.php:121
+#: includes/settings.php:166 includes/settings.php:178
+#: includes/settings.php:191 includes/settings.php:204
 msgid "Activate"
 msgstr ""
 
-#: includes/settings.php:90
+#: includes/settings.php:92
 msgid "Redirect Pages"
 msgstr ""
 
-#: includes/settings.php:91
+#: includes/settings.php:93
 msgid ""
 "<b>If you have activated forum visibility above</b>, then users without "
 "access will see forums headings and descriptions.  When they click these  "
@@ -432,22 +507,22 @@ msgid ""
 "\" so you can send them to say a register or buy access page. "
 msgstr ""
 
-#: includes/settings.php:95
+#: includes/settings.php:97
 msgid "URL of redirect page for LOGGED-IN user"
 msgstr ""
 
-#: includes/settings.php:98
+#: includes/settings.php:100
 msgid ""
 "Enter the full url (permalink) of the page to redirect users without access "
 "to eg http://www.mysite.com/sign-up.  If you leave this blank, users will "
 "see your sites \"404 not-found\" page"
 msgstr ""
 
-#: includes/settings.php:103
+#: includes/settings.php:105
 msgid "URL of redirect page for NON-LOGGED-IN"
 msgstr ""
 
-#: includes/settings.php:106
+#: includes/settings.php:108
 msgid ""
 "Enter the full url (permalink) of the page to redirect users without access "
 "to eg http://www.mysite.com/sign-up.  This can be the same as the LOGGED-IN "
@@ -456,11 +531,11 @@ msgid ""
 "page"
 msgstr ""
 
-#: includes/settings.php:113
+#: includes/settings.php:115
 msgid "Freshness Settings"
 msgstr ""
 
-#: includes/settings.php:114
+#: includes/settings.php:116
 msgid ""
 "<b>If you have activated forum visibility above</b>, for private group "
 "forums, when user does not have access, you can either show a message in "
@@ -469,87 +544,97 @@ msgid ""
 "above. "
 msgstr ""
 
-#: includes/settings.php:126
+#: includes/settings.php:128
 msgid "Freshness Message"
 msgstr ""
 
-#: includes/settings.php:129
+#: includes/settings.php:131
 msgid "Enter the message to be shown e.g. Click here to sign up"
 msgstr ""
 
-#: includes/settings.php:137 includes/settings.php:202
+#: includes/settings.php:139 includes/settings.php:217
 msgid "Save Options"
 msgstr ""
 
-#: includes/settings.php:158 includes/settings.php:416
+#: includes/settings.php:162 includes/settings.php:442
 msgid "Hide topic and reply counts"
 msgstr ""
 
-#: includes/settings.php:171
+#: includes/settings.php:173
+msgid "List Sub-forums in Columns"
+msgstr ""
+
+#: includes/settings.php:186
 msgid "Show Descriptions"
 msgstr ""
 
-#: includes/settings.php:184
+#: includes/settings.php:199
 msgid "Remove 'Private' prefix"
 msgstr ""
 
-#: includes/settings.php:195
+#: includes/settings.php:210
 msgid ""
 "By default bbPress shows the prefix \"Private\" before each private forum. "
 "Activate this checkbox to remove this prefix."
 msgstr ""
 
-#: includes/settings.php:226
+#: includes/settings.php:241
 msgid ""
 "This section allows you to set up groups.  Enter a Description for each "
 "group eg gamers, teachers, group1 etc."
 msgstr ""
 
-#: includes/settings.php:250
+#: includes/settings.php:265
 msgid "Add new group"
 msgstr ""
 
-#: includes/settings.php:261
+#: includes/settings.php:276
 msgid "Save Groups"
 msgstr ""
 
-#: includes/settings.php:295
+#: includes/settings.php:310
 msgid "Group name :"
 msgstr ""
 
-#: includes/settings.php:297
+#: includes/settings.php:312
 msgid "No. users in this group : "
 msgstr ""
 
-#: includes/settings.php:314
+#: includes/settings.php:329
 msgid "Forums in this group :"
 msgstr ""
 
-#: includes/settings.php:333
+#: includes/settings.php:348
 msgid "No. forums that have this group set : "
 msgstr ""
 
-#: includes/settings.php:394
+#: includes/settings.php:414
 msgid "bbp Private Groups"
 msgstr ""
 
-#: includes/settings.php:403
+#: includes/settings.php:423
 msgid "Click to activate forum visibility"
 msgstr ""
 
-#: includes/settings.php:409
+#: includes/settings.php:429
 msgid "Click to activate a freshness message"
 msgstr ""
 
-#: includes/settings.php:422
-msgid "Show forum content (Descriptions) on main index"
+#: includes/settings.php:436
+msgid "List Sub-forums in column"
 msgstr ""
 
-#: includes/settings.php:428
+#: includes/settings.php:448
+msgid ""
+"Show sub-forum content (Descriptions) on main index - sub-forums will "
+"display in columns"
+msgstr ""
+
+#: includes/settings.php:454
 msgid "Remove Private prefix"
 msgstr ""
 
-#: includes/settings.php:434
+#: includes/settings.php:460
 msgid "Click and then press \"save groups\" to add a new group"
 msgstr ""
 
@@ -641,6 +726,38 @@ msgstr ""
 
 #: includes/user_management.php:219 includes/user_management.php:249
 msgid "users amended"
+msgstr ""
+
+#: includes/widget_warning.php:16
+msgid "Widget Warning"
+msgstr ""
+
+#: includes/widget_warning.php:19
+msgid ""
+"The <i>(bbpress) recent topics</i> and <i>(bbpress) recent replies</i> "
+"widgets will still show all topic and reply titles etc."
+msgstr ""
+
+#: includes/widget_warning.php:20
+msgid "The <i>(bbpress) Forums List</i> will still show all the forums."
+msgstr ""
+
+#: includes/widget_warning.php:23
+msgid ""
+"If a forum/topic/reply is selected this will give an error message, but "
+"titles and authors will be visible, which might be embarrassing !"
+msgstr ""
+
+#: includes/widget_warning.php:25
+msgid ""
+"Use the new widget versions which you will see in the "
+"Dashboard>appearance>widgets"
+msgstr ""
+
+#: includes/widget_warning.php:32
+msgid ""
+"Or use the <i>(PG) Latest Activity </i> widget - combines the best of recent "
+"topics and replies, and customisable to show just what you want!"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
