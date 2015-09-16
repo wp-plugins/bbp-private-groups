@@ -25,7 +25,8 @@ add_filter ('bbp_before_get_dropdown_parse_args', 'pg_forum_dropdown') ;
 		return $args ;
 		}
 		//if forums are visible to everyone, then skip filtering
-		if (!$rpg_settingsf['set_forum_visibility']) {
+		if ( isset( $rpg_settingsf['set_forum_visibility'] ) && !$rpg_settingsf['set_forum_visibility'] ) {
+		//if (!$rpg_settingsf['set_forum_visibility']) {
 		//Get an array of forums which the current user has permissions to view posts in
 		global $wpdb;
 		$forum=bbp_get_forum_post_type() ;
@@ -114,7 +115,8 @@ function private_groups_get_permitted_subforums($args = '') {
 	
 	global $rpg_settingsf ;
 		//if make forums visible set, then show all public forums
-		if ($rpg_settingsf['set_forum_visibility']) {
+		if ( isset( $rpg_settingsf['set_forum_visibility'] ) && $rpg_settingsf['set_forum_visibility'] ) {
+		//if ($rpg_settingsf['set_forum_visibility']) {
 		return (array) apply_filters( 'pg_forum_get_subforums',$sub_forums, $r );
 		}
 		
@@ -206,9 +208,11 @@ function custom_list_forums( $output, $args = ''  ) {
         'show_topic_count'  => true,
         'show_reply_count'  => true,
     ), 'listb_forums' );
-    
-	if($rpg_settingsg['list_sub_forums_as_column'] == true || $rpg_settingsg['activate_descriptions'] == true ) $r['separator'] = '<br>' ;
-  
+	
+	if ( isset( $rpg_settingsg['list_sub_forums_as_column'] ) && 'true' == $rpg_settingsg['list_sub_forums_as_column'] ) $r['separator'] = '<br>' ;
+	if ( isset( $rpg_settingsg['activate_descriptions'] ) && 'true' == $rpg_settingsg['activate_descriptions'] ) $r['separator'] = '<br>' ;
+	  
+	  
     // Loop through forums and create a list
     $sub_forums = bbp_forum_get_subforums( $r['forum_id'] );
     if ( !empty( $sub_forums ) ) {
@@ -226,7 +230,7 @@ function custom_list_forums( $output, $args = ''  ) {
             $content = bbp_get_forum_content($sub_forum->ID) ;
             
 			//get content if activate descriptions
-            if($rpg_settingsg['activate_descriptions'] == true) {
+            if ( isset( $rpg_settingsg['activate_descriptions'] ) && $rpg_settingsg['activate_descriptions'] == true) {
                 $content = bbp_get_forum_content($sub_forum->ID) ;
             }
             else {
