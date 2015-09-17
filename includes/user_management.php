@@ -16,7 +16,8 @@
 			pg_no_group_users( $_POST['users'] );
 		elseif ( $_POST && 'group' == (substr($_POST['action'],0,5)) && wp_verify_nonce( $_POST['confirm-bulk-action-nonce'], 'confirm-bulk-action' ) ) :
 			pg_group_users( $_POST['users'] );
-		elseif ('filter' == (substr($_POST['action2'],0,6)) ) :
+		elseif ((!empty($_POST['action2'])) && 'filter' == (substr($_POST['action2'],0,6)) ) :
+		//elseif ('filter' == (substr($_POST['action2'],0,6)) ) :
 		$group=substr($_POST['action2'],6,strlen($_POST['action2'])) ;
 		endif;
 		
@@ -199,6 +200,7 @@
 	 * changes users to no-group
 	 **/
 	function pg_no_group_users( array $user_ids ) {
+		$user = wp_get_current_user();
 		if ( $user_ids && current_user_can( 'edit_user',  $user->ID ) ) :
 
 			foreach ( $user_ids as $user_id ) :
@@ -229,6 +231,7 @@
 	 * changes users to a group
 	 **/
 	function pg_group_users( array $user_ids ) {
+		$user = wp_get_current_user();
 		if ( $user_ids && current_user_can( 'edit_user',  $user->ID ) ) :
 
 			foreach ( $user_ids as $user_id ) :

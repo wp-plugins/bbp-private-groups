@@ -153,6 +153,8 @@ A shortcode to list users either across all groups or per group
 
 
 == Changelog ==
+3.0.6 minor undefined index errors fixed in settings pages
+<br>
 3.0.5 minor undefined index errors fixed in forum-filters.php
 <br>
 3.0.4 fix issue with widgets showing activity' if post__in no allowed_posts array is blank

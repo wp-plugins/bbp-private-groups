@@ -38,7 +38,8 @@ Function pg_role_assignment () { ?>
 					<th><?php _e('Add group on login', 'bbp-private-groups'); ?></th>
 					<td>
 					<?php global $rpg_roles ;
-					$item =  $rpg_roles['login'] ;
+					$item = (!empty( $rpg_roles['login'] ) ?  $rpg_roles['login'] : '');
+					//$item =  $rpg_roles['login'] ;
 					echo '<input name="rpg_roles[login]" id="rpg_roles[login]" type="checkbox" value="1" class="code" ' . checked( 1,$item, false ) . ' />' ;
 					?>
 					</td>
