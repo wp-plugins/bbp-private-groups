@@ -4,7 +4,7 @@ Tags: forum, bbpress, bbp, private, groups
 Requires at least: 3.0.1
 Donate link: http://www.rewweb.co.uk/donate
 Tested up to: 4.3.1
-Stable tag: 3.0.6
+Stable tag: 3.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -153,80 +153,79 @@ A shortcode to list users either across all groups or per group
 
 
 == Changelog ==
+3.0.8 Additional shirtcides added to replace bbp single forum, topics and replies shortcodes
+Line 21 added to replies.php to set null for $allowed_posts
+
+3.0.7 fix issue with forum visibility forum-filters.php lines 28 & 119
+corrected unitinitilased offset in forum-filters.php line 256 and functions.php line 235
+
 3.0.6 minor undefined index errors fixed in settings pages
-<br>
+
 3.0.5 minor undefined index errors fixed in forum-filters.php
-<br>
+
 3.0.4 fix issue with widgets showing activity' if post__in no allowed_posts array is blank
-<br>
 Internationalisation added for pg_forum_widgets.php
-<br>
 $user_id added to is_keymaster($user_id) line 48 in user-view-post.php to allow for compatibility with other plugins
-<br>
-3.0.3 fix issue with 404's showing in functions file function 'private_group_enforce_permissions'
-<br>
+
+3.0.3 fix issue with 404's showing in functions file
+
 3.0.2 fix foreach error in functions line 300
-<br>
+
 3.0.1 fix issue with assign groups to roles, and add login assignation to plugin role_assignment.php functions.php, change replies.php to set $limit in all cases
-<br>
+
 2.5.6 change to forum_filters.php and topics.php to correct minor syntax errors https://wordpress.org/support/topic/couple-of-warnings-in-latest-version?replies=6 and https://wordpress.org/support/topic/bbp_list_forums-filter-bug?replies=2
-<br>
+
 2.5.5 add latest activity widget, corrected sub-forum display and added column option
-<br>
+
 2.5.4 remove author link filter as not required
-<br>
+
 2.5.3 fix search pagnination
-<br>
+
 2.5.2 correction to moderator role to prevent moderators seeing other private forums
-<br>
+
 2.5.1 minor error fix for 'remove private prefix' casuing illegal offset
-<br>
+
 2.5 updated to allow internationalization
-<br>
+
 2.4 Correction to management information user count
-<br>
+
 2.3 Minor correction
-<br>
+
 2.2 Multiple groups for users added
-<br>
+
 2.1  Optional assign users to roles added to settings
-<br>
+
 2.0.1 list user shortcode added
-<br>
 User Management (bulk change of users) added
-<br>
 Management information - list of forums added
-<br>
+
+
 1.9.2 Fix for array error on forum visibility
-<br>
 improved filter for topic subscriptions
-<br>
+
 1.9.1  Fix for moderator role in group views
-<br>
+
 1.9 fix to forum subscription display in profile
-<br>
+
 1.8.1  bug fix for search function returning incorrect data when allowed posts was nil
-<br>
+
 1.8 bug fix where forum is top level forum
-<br>
 topic/reply/forum types implemented throughout
-<br>
+
 1.7 Moderators can now be set to moderate all forums or just their group ones (plus any open forums)
-<br>
 Improved topic filtering to speed performance
-<br>
 allow Super sticky topics to be seen by all forums
-<br>
+
 1.6 Shortcode [bbp-topic-form] now only shows allowed forums
-<br>
+
 1.5 Amended to have unlimited groups
-<br>
+
 1.4.1 compatibility with 'mark as read' plugin
-<br>
+
 1.3 topics and replies paging fixed
-<br>
+
 1.2 Author and replies issues fixed
-<br>
+
 1.1 Minor changes
-<br>
+
 1.0 Version 1

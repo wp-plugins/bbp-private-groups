@@ -18,7 +18,8 @@ function pg_get_user_replies_created( $user_id = 0 ) {
 		$check=get_user_meta( $current_user, 'private_group',true);
 		if ($check=='') $limit='n' ;
 		}
-	//skip filtering unless needed	
+	$allowed_posts = array();	
+	 	//skip filtering unless needed	
 	if ($limit != 'n') {
 	global $wpdb;
 	$reply=bbp_get_reply_post_type() ;
@@ -28,10 +29,9 @@ function pg_get_user_replies_created( $user_id = 0 ) {
 	
     }
 		
-		// The default reply query with allowed topic and reply ids array added
-		
-		
-    		
+	// The default reply query with allowed topic and reply ids array added
+	
+   
    	// Try to get the topics
 	$query = bbp_has_replies( array(
 		'post_type' => bbp_get_reply_post_type(),
@@ -39,6 +39,7 @@ function pg_get_user_replies_created( $user_id = 0 ) {
 		'author'    => $user_id2,
 		'post__in'  => $allowed_posts
 	) );
+
 	
 return apply_filters( 'pg_get_user_replies_created', $query, $user_id );
 }

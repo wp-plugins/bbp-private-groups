@@ -42,6 +42,7 @@ global $rpg_settingsf ;
 	<a href="?page=bbp-private-group-settings&tab=user_management"  class="nav-tab <?php echo $active_tab == 'user_management' ? 'nav-tab-active' : ''; ?>"><?php _e('User Management' , 'bbp-private-groups' ) ; ?></a>	
 	<a href="?page=bbp-private-group-settings&tab=role_assignment"  class="nav-tab <?php echo $active_tab == 'role_assignment' ? 'nav-tab-active' : ''; ?>"><?php _e('Assign groups to roles' , 'bbp-private-groups' ) ; ?></a>
 	<a href="?page=bbp-private-group-settings&tab=widget_warning"  class="nav-tab <?php echo $active_tab == 'widget_warning' ? 'nav-tab-active' : ''; ?>"><?php _e('Widget Warning !' , 'bbp-private-groups' ) ; ?></a>	
+	<a href="?page=bbp-private-group-settings&tab=shortcode_warning"  class="nav-tab <?php echo $active_tab == 'shortcode_warning' ? 'nav-tab-active' : ''; ?>"><?php _e('Shortcode Warning !' , 'bbp-private-groups' ) ; ?></a>	
 	<a href="?page=bbp-private-group-settings&tab=help" class="nav-tab <?php echo $active_tab == 'help' ? 'nav-tab-active' : ''; ?>"><?php _e('Help' , 'bbp-private-groups' ) ; ?></a></h2>
 	
 	<table class="form-table">
@@ -390,6 +391,16 @@ pg_role_assignment() ;
 if ($active_tab == 'widget_warning' ) {
 pg_widget_warning() ;
 }
+?>
+<?php
+//****  role assignment
+if ($active_tab == 'shortcode_warning' ) {
+pg_shortcode_warning() ;
+}
+
+
+
+
 //end of tab function
 }
 

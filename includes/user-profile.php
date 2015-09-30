@@ -68,7 +68,7 @@ function rpg_user_profile_field() {
 function bbp_edit_user_pg( $user_id ) {
 	global $rpg_groups ;
 	$string='*' ;
-		foreach ( $rpg_groups as $pggroup => $details) { 
+		foreach ( (array) $rpg_groups as $pggroup => $details) { 
 		$item='private_group_'.$pggroup ;
 		$data = ($_POST[$pggroup] );
 			if ($data=='on') {

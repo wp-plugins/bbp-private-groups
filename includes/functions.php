@@ -232,7 +232,7 @@ global $rpg_settingsf ;
   	
 			}
 			//now see if there is a freshness message
-			if ($rpg_settingsf['set_freshness_message']) {
+			if (!empty ($rpg_settingsf['set_freshness_message']) ){
 				$title=$rpg_settingsf['freshness_message'] ;
 				//and set up anchor 
 				$anchor = '<a href="' . esc_url($link) . '">' .$title. '</a>';

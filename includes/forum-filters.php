@@ -24,9 +24,10 @@ add_filter ('bbp_before_get_dropdown_parse_args', 'pg_forum_dropdown') ;
 		if(isset($args['post__in'] )) {
 		return $args ;
 		}
-		//if forums are visible to everyone, then skip filtering
-		if ( isset( $rpg_settingsf['set_forum_visibility'] ) && !$rpg_settingsf['set_forum_visibility'] ) {
-		//if (!$rpg_settingsf['set_forum_visibility']) {
+		//if forums are visible to everyone, then skip filtering, so if set_forum_visibility is empty then we need to filter
+		if (empty($rpg_settingsf['set_forum_visibility'])) {
+		//3.0.5 if ( isset( $rpg_settingsf['set_forum_visibility'] ) && !$rpg_settingsf['set_forum_visibility'] ) {
+		//3.0.4 if (!$rpg_settingsf['set_forum_visibility']) {
 		//Get an array of forums which the current user has permissions to view posts in
 		global $wpdb;
 		$forum=bbp_get_forum_post_type() ;
@@ -115,8 +116,9 @@ function private_groups_get_permitted_subforums($args = '') {
 	
 	global $rpg_settingsf ;
 		//if make forums visible set, then show all public forums
-		if ( isset( $rpg_settingsf['set_forum_visibility'] ) && $rpg_settingsf['set_forum_visibility'] ) {
-		//if ($rpg_settingsf['set_forum_visibility']) {
+		if (!empty($rpg_settingsf['set_forum_visibility'])) {
+		//3.0.5 if ( isset( $rpg_settingsf['set_forum_visibility'] ) && $rpg_settingsf['set_forum_visibility'] ) {
+		//3.0.4 if ($rpg_settingsf['set_forum_visibility']) {
 		return (array) apply_filters( 'pg_forum_get_subforums',$sub_forums, $r );
 		}
 		
@@ -253,9 +255,10 @@ function custom_list_forums( $output, $args = ''  ) {
                 $counts = $r['count_before'] . implode( $r['count_sep'], $count ) . $r['count_after'];
             }
             
-            if($rpg_settingsg['hide_counts'] == true) {
+            if(!empty ($rpg_settingsg['hide_counts']) ) {
                 $counts='';
             }
+			
             //Build this sub forums link
 			if (bbp_is_forum_private($sub_forum->ID)) {
 				if (!current_user_can( 'read_private_forums' ) ) {
