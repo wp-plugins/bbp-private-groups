@@ -153,7 +153,7 @@ A shortcode to list users either across all groups or per group
 
 
 == Changelog ==
-3.0.8 Additional shirtcides added to replace bbp single forum, topics and replies shortcodes
+3.0.8 Additional shortcodes added to replace bbp single forum, topics and replies shortcodes
 Line 21 added to replies.php to set null for $allowed_posts
 
 3.0.7 fix issue with forum visibility forum-filters.php lines 28 & 119
