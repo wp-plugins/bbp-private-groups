@@ -28,7 +28,7 @@
 						<?php _e ('Additional Shortcodes' , 'bbp-private-groups' ) ; ?>
 						</h3>
 <p><tt>[pg-single-forum id=2923 ]</tt> 	</p>					
-<p><tt>[pg-single-forum id=xxxx message ="You do not have permission to view this"]</tt> </p>
+<p><tt>[pg-single-forum id=2923 message ="You do not have permission to view this"]</tt> </p>
 <p> <?php _e('Displays a single forum with an ID of 2923, with optional message for non-logged in users or users without permission for this forum', 'bbp-private-groups' ) ; ?>
 </p>
 <p><tt>[pg-single-topic id=15646 ]</tt></p>
